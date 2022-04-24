@@ -1,0 +1,10 @@
+html {
+    cursor: url(https://cdn.jsdelivr.net/gh/jnylife/ImgHosting//img/202111301736928.cur),
+        default;
+}
+a,
+img,
+.menus_item,button,#site-name,#page-header #scroll-down .scroll-down-effects {
+    cursor: url(https://cdn.jsdelivr.net/gh/jnylife/ImgHosting//img/202111301737778.cur),
+        default;
+}

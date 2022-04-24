@@ -1,0 +1,449 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>CSS3 | JnyLife</title><meta name="keywords" content="CSS3,animation"><meta name="author" content="今年勇"><meta name="copyright" content="今年勇"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="CSS3浏览器内核  transition过渡transition1234transition-property: all;        transition-duration: 1s;        transition-delay: 2s;       transition-timing-function:cubic-bezier(.49,-0.75,.88,1.74);     trans">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CSS3">
+<meta property="og:url" content="https://www.jnylife.com/2021/11/19/CSS3/index.html">
+<meta property="og:site_name" content="JnyLife">
+<meta property="og:description" content="CSS3浏览器内核  transition过渡transition1234transition-property: all;        transition-duration: 1s;        transition-delay: 2s;       transition-timing-function:cubic-bezier(.49,-0.75,.88,1.74);     trans">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/jnylife/ImgHosting/img/202111191541129.jpg">
+<meta property="article:published_time" content="2021-11-19T07:39:23.000Z">
+<meta property="article:modified_time" content="2021-12-30T07:32:46.229Z">
+<meta property="article:author" content="今年勇">
+<meta property="article:tag" content="CSS3">
+<meta property="article:tag" content="animation">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/jnylife/ImgHosting/img/202111191541129.jpg"><link rel="shortcut icon" href="/img/cab.png"><link rel="canonical" href="https://www.jnylife.com/2021/11/19/CSS3/"><link rel="preconnect" href="//cdn.jsdelivr.net"><link rel="preconnect" href="//hm.baidu.com"><link rel="preconnect" href="//busuanzi.ibruce.info"><meta name="google-site-verification" content="_FeGZdj9RIiBCN55GHRicNWjHWJOWYMHqjZAQ_I3OL8"><meta name="baidu-site-verification" content="code-CZoubPbyzy"><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?806a62e722e336112b983d34d218c6c5";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":200},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'CSS3',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2021-12-30 15:32:46'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if (GLOBAL_CONFIG_SITE.isHome && /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"><link rel="stylesheet" href="/css/test2.css"><link rel="stylesheet" href="/css/universe.css"><link rel="stylesheet" href="/css/map.css"><link rel="stylesheet" href="/css/iconfont.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/zhheo/JS-Heo@main/bb/showbb_in_index.css"><link rel="stylesheet" href="/css/cursor.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/HCLonely/images@master/others/heartbeat.min.css"><link rel="stylesheet" href="/css/test.css"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/zhheo/JS-Heo@main/mainColor/heoMainColor.css"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/zhheo/JS-Heo@main/poem/poem.css"><link rel="stylesheet" href="/css/test3.css"><link rel="stylesheet" href="/css/modify.css"></head><body><svg aria-hidden="true" style="position:absolute; overflow:hidden; width:0; height:0"><symbol id="icon-sun" viewBox="0 0 1024 1024"><path d="M960 512l-128 128v192h-192l-128 128-128-128H192v-192l-128-128 128-128V192h192l128-128 128 128h192v192z" fill="#FFD878" p-id="8420"></path><path d="M736 512a224 224 0 1 0-448 0 224 224 0 1 0 448 0z" fill="#FFE4A9" p-id="8421"></path><path d="M512 109.248L626.752 224H800v173.248L914.752 512 800 626.752V800h-173.248L512 914.752 397.248 800H224v-173.248L109.248 512 224 397.248V224h173.248L512 109.248M512 64l-128 128H192v192l-128 128 128 128v192h192l128 128 128-128h192v-192l128-128-128-128V192h-192l-128-128z" fill="#4D5152" p-id="8422"></path><path d="M512 320c105.888 0 192 86.112 192 192s-86.112 192-192 192-192-86.112-192-192 86.112-192 192-192m0-32a224 224 0 1 0 0 448 224 224 0 0 0 0-448z" fill="#4D5152" p-id="8423"></path></symbol><symbol id="icon-moon" viewBox="0 0 1024 1024"><path d="M611.370667 167.082667a445.013333 445.013333 0 0 1-38.4 161.834666 477.824 477.824 0 0 1-244.736 244.394667 445.141333 445.141333 0 0 1-161.109334 38.058667 85.077333 85.077333 0 0 0-65.066666 135.722666A462.08 462.08 0 1 0 747.093333 102.058667a85.077333 85.077333 0 0 0-135.722666 65.024z" fill="#FFB531" p-id="11345"></path><path d="M329.728 274.133333l35.157333-35.157333a21.333333 21.333333 0 1 0-30.165333-30.165333l-35.157333 35.157333-35.114667-35.157333a21.333333 21.333333 0 0 0-30.165333 30.165333l35.114666 35.157333-35.114666 35.157334a21.333333 21.333333 0 1 0 30.165333 30.165333l35.114667-35.157333 35.157333 35.157333a21.333333 21.333333 0 1 0 30.165333-30.165333z" fill="#030835" p-id="11346"></path></symbol></svg><a onclick="switchNightMode()" class="icon-V hidden" title="切换日间/夜间模式"><svg width="48" height="48" viewBox="0 0 1024 1024"><use id="modeicon" xlink:href="#icon-moon"></use></svg></a><link rel="stylesheet" href="//at.alicdn.com/t/font_2963292_48tizpxed9i.css"><meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="JnyLife" type="application/atom+xml">
+<div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://cdn.jsdelivr.net/gh/jnylife/ImgHosting/img/202112241523748.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">26</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">46</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">10</div></a></div></div></div><hr><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-book"></i><span> 文章</span><i class="fas fa-chevron-down expand hide"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-th-large"></i><span> 宝箱</span><i class="fas fa-chevron-down expand hide"></i></a><ul class="menus_item_child"><li><a class="site-page child" target="_blank" rel="noopener" href="https://admin.ymktchic.top/"><i class="fa-fw fas fa-user-shield"></i><span> 评论管理</span></a></li><li><a class="site-page child" target="_blank" rel="noopener" href="http://ymktchic.top/index.php/login"><i class="fa-fw fas fa-cloud"></i><span> 我的云盘</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-photo-video"></i><span> 生活</span><i class="fas fa-chevron-down expand hide"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/photos/"><i class="fa-fw fas fa-image"></i><span> 相册</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 视频</span></a></li><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-compact-disc"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/eassy/"><i class="fa-fw fas fa-grin-wink"></i><span> 说说</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/messageboard/"><i class="fa-fw fas fa-comments"></i><span> 留言板</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://cdn.jsdelivr.net/gh/jnylife/ImgHosting/img/202111191541129.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">JnyLife</a></span><div id="he-plugin-simple"></div>  <div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-book"></i><span> 文章</span><i class="fas fa-chevron-down expand hide"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-th-large"></i><span> 宝箱</span><i class="fas fa-chevron-down expand hide"></i></a><ul class="menus_item_child"><li><a class="site-page child" target="_blank" rel="noopener" href="https://admin.ymktchic.top/"><i class="fa-fw fas fa-user-shield"></i><span> 评论管理</span></a></li><li><a class="site-page child" target="_blank" rel="noopener" href="http://ymktchic.top/index.php/login"><i class="fa-fw fas fa-cloud"></i><span> 我的云盘</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-photo-video"></i><span> 生活</span><i class="fas fa-chevron-down expand hide"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/photos/"><i class="fa-fw fas fa-image"></i><span> 相册</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 视频</span></a></li><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-compact-disc"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/eassy/"><i class="fa-fw fas fa-grin-wink"></i><span> 说说</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/messageboard/"><i class="fa-fw fas fa-comments"></i><span> 留言板</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">CSS3</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-11-19T07:39:23.000Z" title="发表于 2021-11-19 15:39:23">2021-11-19</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-12-30T07:32:46.229Z" title="更新于 2021-12-30 15:32:46">2021-12-30</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%89%8D%E7%AB%AF%E5%AD%A6%E4%B9%A0/">前端学习</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">2.6k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>11分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="CSS3"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><div class="top-img" style="background-image: url('https://cdn.jsdelivr.net/gh/jnylife/ImgHosting/img/202111191541129.jpg');"></div><article class="post-content" id="article-container"><h1 id="CSS3"><a href="#CSS3" class="headerlink" title="CSS3"></a>CSS3</h1><h2 id="浏览器内核"><a href="#浏览器内核" class="headerlink" title="浏览器内核"></a>浏览器内核</h2><img src="https://cdn.jsdelivr.net/gh/jnylife/ImgHosting/img/202111191545554.jpg" style="zoom:80%;">
+
+<h2 id="transition过渡"><a href="#transition过渡" class="headerlink" title="transition过渡"></a>transition过渡</h2><h3 id="transition"><a href="#transition" class="headerlink" title="transition"></a>transition</h3><figure class="highlight css"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">transition-property</span>: all; </span><br><span class="line">       <span class="attribute">transition-duration</span>: <span class="number">1s</span>; </span><br><span class="line">       <span class="attribute">transition-delay</span>: <span class="number">2s</span>;</span><br><span class="line">       <span class="attribute">transition-timing-function</span>:<span class="built_in">cubic-bezier</span>(.<span class="number">49</span>,-<span class="number">0.75</span>,.<span class="number">88</span>,<span class="number">1.74</span>);</span><br></pre></td></tr></tbody></table></figure>
+
+<ul>
+<li><p>  transition-property  :  规定设置过渡效果的CSS属性的名称。</p>
+</li>
+<li><p>​    transition-duration  :  规定完成过渡效果需要多少秒或毫秒。</p>
+</li>
+<li><p>​    transition-delay  :  定义过渡效果何时开始。  ( 延迟(数值为正数)，也可以提前(数值为负数) )</p>
+</li>
+<li><p>​    transition-timing-function  :  规定速度效果的速度曲线。</p>
+</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/jnylife/ImgHosting/img/202111191545187.jpg"></p>
+<h2 id="transform变化"><a href="#transform变化" class="headerlink" title="transform变化"></a>transform变化</h2><img src="https://cdn.jsdelivr.net/gh/jnylife/ImgHosting/img/202111191542611.png" style="zoom:67%;">
+
+<p> transform的注意事项：</p>
+<ol>
+<li>变形操作不会影响到其他元素。</li>
+<li>变形操作只能添加给块元素，但是不能添加给内联元素。</li>
+<li>复合写法，可以同时添加多个变形操作 </li>
+<li>执行是有顺序的，先执行后面的操作，再执行前面的操作。</li>
+<li>translate会受到 rotate、scale、skew的影响</li>
+<li>transform-origin : 基点的位置  x y z(3d)</li>
+</ol>
+<h2 id="animaion动画"><a href="#animaion动画" class="headerlink" title="animaion动画"></a>animaion动画</h2><figure class="highlight css"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">div</span> {</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">100px</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">100px</span>;</span><br><span class="line">  <span class="attribute">background-color</span>: red;</span><br><span class="line">  <span class="attribute">animation-name</span>: example;</span><br><span class="line">  <span class="attribute">animation-duration</span>: <span class="number">4s</span>;</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">@keyframes</span> example {</span><br><span class="line">  <span class="selector-tag">from</span> {<span class="attribute">background-color</span>: red;</span><br><span class="line">  }</span><br><span class="line">  <span class="selector-tag">to</span> {<span class="attribute">background-color</span>: yellow;</span><br><span class="line">  <span class="attribute">width</span>:<span class="number">200px</span>;}</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+
+<img src="https://cdn.jsdelivr.net/gh/jnylife/ImgHosting/img/202111191542622.gif" style="zoom:67%;">
+
+<blockquote>
+
+<ol>
+<li><p>animation-name: 设置动画的名字。</p>
+</li>
+<li><p>animation-duration : 动画的持续时间</p>
+</li>
+<li><p>animation-delay : 动画的延迟时间</p>
+</li>
+<li><p>animation-iteration-count : 动画的重复次数 ，默认值就是1 ，infinite无限次数</p>
+</li>
+<li><p>animation-timing-function : 动画的运动形式</p>
+</li>
+</ol>
+<p> 注：</p>
+<ol>
+<li>运动结束后，默认情况下会停留在起始位置。</li>
+<li>keyframes :  from -&gt; 0%   ,  to -&gt;  100% </li></ol></blockquote>
+
+<p><strong>复合写法：animation:①②③④⑤;</strong></p>
+<figure class="highlight css"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"> <span class="selector-tag">ul</span> <span class="selector-tag">li</span><span class="selector-pseudo">:hover</span> <span class="selector-tag">img</span>{ <span class="attribute">animation</span>: move <span class="number">5s</span>;}</span><br><span class="line">    <span class="keyword">@keyframes</span> move{</span><br><span class="line">        <span class="number">0%</span>{ <span class="attribute">transform</span> : <span class="built_in">translate</span>(<span class="number">0</span>,<span class="number">0</span>); <span class="attribute">opacity</span>:<span class="number">1</span>; }</span><br><span class="line">        <span class="number">60%</span>{ <span class="attribute">transform</span> : <span class="built_in">translate</span>(<span class="number">0</span>,-<span class="number">50px</span>); <span class="attribute">opacity</span>:<span class="number">0</span>;}</span><br><span class="line">        <span class="number">61%</span>{ <span class="attribute">transform</span> : <span class="built_in">translate</span>(<span class="number">0</span>,<span class="number">20px</span>);}</span><br><span class="line">        <span class="number">100%</span>{ <span class="attribute">transform</span> : <span class="built_in">translate</span>(<span class="number">0</span>,<span class="number">0</span>); <span class="attribute">opacity</span>:<span class="number">1</span>;}</span><br><span class="line">    }</span><br><span class="line"><span class="comment">/* 淡入淡出效果 */</span></span><br></pre></td></tr></tbody></table></figure>
+
+<img src="https://cdn.jsdelivr.net/gh/jnylife/ImgHosting/img/202111191542623.gif" style="zoom:80%;">
+
+<h3 id="animation实现动画加载效果"><a href="#animation实现动画加载效果" class="headerlink" title="animation实现动画加载效果"></a>animation实现动画加载效果</h3><figure class="highlight css"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&lt;style type="text/css"&gt;</span><br><span class="line">		<span class="selector-class">.loading</span>{<span class="attribute">width</span>: <span class="number">40px</span>;<span class="attribute">height</span>: <span class="number">40px</span>;<span class="attribute">position</span>: relative; <span class="attribute">margin</span>: <span class="number">20px</span> auto;}</span><br><span class="line">		<span class="selector-class">.loading</span> <span class="selector-class">.box1</span> ,<span class="selector-class">.loading</span> <span class="selector-class">.box2</span>{<span class="attribute">width</span>: <span class="number">100%</span>;<span class="attribute">height</span>: <span class="number">100%</span>;<span class="attribute">position</span>: absolute;}</span><br><span class="line">		<span class="selector-class">.loading</span> <span class="selector-class">.box2</span>{<span class="attribute">transform</span>: <span class="built_in">rotate</span>(<span class="number">45deg</span>);}</span><br><span class="line">		<span class="selector-class">.box1</span> <span class="selector-tag">div</span> ,<span class="selector-class">.box2</span> <span class="selector-tag">div</span>{<span class="attribute">width</span>: <span class="number">10px</span>;<span class="attribute">height</span>: <span class="number">10px</span>;<span class="attribute">background</span>: skyblue;<span class="attribute">border-radius</span>: <span class="number">50%</span>;<span class="attribute">position</span>: absolute;<span class="attribute">animation</span>: load <span class="number">1.5s</span> infinite linear;}</span><br><span class="line">	      <span class="selector-class">.box1</span> <span class="selector-tag">div</span><span class="selector-pseudo">:nth-of-type</span>(<span class="number">1</span>) {<span class="attribute">left</span>: <span class="number">0</span>;<span class="attribute">top</span>: <span class="number">0</span>;<span class="attribute">animation-delay</span>: <span class="number">1.4s</span>;}</span><br><span class="line">		   <span class="selector-class">.box2</span> <span class="selector-tag">div</span><span class="selector-pseudo">:nth-of-type</span>(<span class="number">1</span>){<span class="attribute">left</span>: <span class="number">0</span>;<span class="attribute">top</span>: <span class="number">0</span>;<span class="attribute">animation-delay</span>: <span class="number">1.2s</span>;}</span><br><span class="line">		<span class="selector-class">.box1</span> <span class="selector-tag">div</span><span class="selector-pseudo">:nth-of-type</span>(<span class="number">2</span>) {<span class="attribute">right</span>: <span class="number">0</span>;<span class="attribute">top</span>: <span class="number">0</span>;<span class="attribute">animation-delay</span>: <span class="number">1s</span>;}</span><br><span class="line">		 <span class="selector-class">.box2</span> <span class="selector-tag">div</span><span class="selector-pseudo">:nth-of-type</span>(<span class="number">2</span>){<span class="attribute">right</span>: <span class="number">0</span>;<span class="attribute">top</span>: <span class="number">0</span>;<span class="attribute">animation-delay</span>: .<span class="number">8s</span>;}</span><br><span class="line">		<span class="selector-class">.box1</span> <span class="selector-tag">div</span><span class="selector-pseudo">:nth-of-type</span>(<span class="number">3</span>) {<span class="attribute">right</span>: <span class="number">0</span>;<span class="attribute">bottom</span>: <span class="number">0</span>;<span class="attribute">animation-delay</span>: .<span class="number">6s</span>;}</span><br><span class="line">		 <span class="selector-class">.box2</span> <span class="selector-tag">div</span><span class="selector-pseudo">:nth-of-type</span>(<span class="number">3</span>){<span class="attribute">right</span>: <span class="number">0</span>;<span class="attribute">bottom</span>: <span class="number">0</span>;<span class="attribute">animation-delay</span>: .<span class="number">4s</span>;}</span><br><span class="line">		 <span class="selector-class">.box1</span> <span class="selector-tag">div</span><span class="selector-pseudo">:nth-of-type</span>(<span class="number">4</span>) {<span class="attribute">left</span>: <span class="number">0</span>;<span class="attribute">bottom</span>: <span class="number">0</span>;<span class="attribute">animation-delay</span>: .<span class="number">2s</span>;}</span><br><span class="line">		  <span class="selector-class">.box2</span> <span class="selector-tag">div</span><span class="selector-pseudo">:nth-of-type</span>(<span class="number">4</span>){<span class="attribute">left</span>: <span class="number">0</span>;<span class="attribute">bottom</span>: <span class="number">0</span>;<span class="attribute">animation-delay</span>: <span class="number">0s</span>;}</span><br><span class="line">		<span class="keyword">@keyframes</span> load{</span><br><span class="line">	    	%<span class="number">0</span>{<span class="attribute">transform</span>: <span class="built_in">scale</span>(<span class="number">1</span>);}</span><br><span class="line">	    	<span class="number">50%</span>{<span class="attribute">transform</span>: <span class="built_in">scale</span>(<span class="number">0</span>);}</span><br><span class="line">			<span class="number">100%</span>{<span class="attribute">transform</span>: <span class="built_in">scale</span>(<span class="number">1</span>);}</span><br><span class="line">	    }</span><br><span class="line">	   </span><br><span class="line">	&lt;/style&gt;</span><br></pre></td></tr></tbody></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/jnylife/ImgHosting/img/202111191542629.gif"></p>
+<blockquote>animation-fill-mode : 规定动画播放之前或之后，其动画效果是否可见。
+         none (默认值) : 在运动结束之后回到初始位置，在延迟的情况下，让0%在延迟后生效
+         backwards  :  在延迟的情况下，让0%在延迟前生效
+         forwards  :  在运动结束的之后，停到结束位置
+         both  :  backwards和forwards同时生效
+
+<p>animation-direction  :  属性定义是否应该轮流反向播放动画。<br> alternate  :  一次正向(0%-100%)，一次反向(100%-0%)<br>     reverse : 永远都是反向 , 从100%-0%<br>     normal (默认值) : 永远都是正向 , 从0%-100%</p>
+</blockquote>
+
+<h2 id="transform3D"><a href="#transform3D" class="headerlink" title="transform3D"></a>transform3D</h2><ol>
+<li><p>transform:</p>
+<p>rotateX() : 绕x轴顺时针旋转</p>
+<p>rotateY() : 绕y轴顺时针旋转</p>
+<p>translateZ() : 绕z轴顺时针旋转</p>
+<p>scaleZ() : 立体元素的厚度</p>
+<p>3d写法</p>
+<p>scale3d() : 三个值 x y z</p>
+<p>translate3d() : 三个值 x y z</p>
+<p>rotate3d() : 四个值 0|1(x轴是否添加旋转角度)  0|1(y轴是否添加旋转角度)  0|1(z轴是否添加旋转角度)  deg</p>
+</li>
+</ol>
+<h3 id="做一个3d立方体"><a href="#做一个3d立方体" class="headerlink" title="做一个3d立方体"></a>做一个3d立方体</h3><figure class="highlight html"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="css"></span></span><br><span class="line"><span class="css">    *{ <span class="attribute">margin</span>:<span class="number">0</span>; <span class="attribute">padding</span>:<span class="number">0</span>;}</span></span><br><span class="line"><span class="css">    <span class="selector-tag">ul</span>{ <span class="attribute">list-style</span>: none;}</span></span><br><span class="line"><span class="css">    <span class="selector-class">.box</span>{ <span class="attribute">width</span>:<span class="number">300px</span>; <span class="attribute">height</span>:<span class="number">300px</span>; <span class="attribute">border</span>:<span class="number">1px</span> black solid; <span class="attribute">margin</span>:<span class="number">30px</span> auto; <span class="attribute">perspective</span>: <span class="number">200px</span>; <span class="attribute">perspective-origin</span>: top right;}</span></span><br><span class="line"><span class="css">    <span class="selector-class">.box</span> <span class="selector-tag">ul</span>{ <span class="attribute">width</span>:<span class="number">100px</span>; <span class="attribute">height</span>:<span class="number">100px</span>; <span class="attribute">margin</span>:<span class="number">100px</span>; <span class="attribute">position</span>: relative; <span class="attribute">transform-style</span>:preserve-<span class="number">3</span>d; <span class="attribute">transition</span>:<span class="number">2s</span>; <span class="attribute">transform-origin</span>: center center -<span class="number">50px</span>; </span></span><br><span class="line"><span class="css">        <span class="comment">/* transform: scaleZ(.5); */</span></span></span><br><span class="line"><span class="css">        <span class="comment">/* transform: scale3d(2,.5,2); */</span></span></span><br><span class="line"><span class="css">       <span class="comment">/*  transform: translate3d(100px,100px,100px); */</span></span></span><br><span class="line"><span class="css">       <span class="attribute">transform</span>: <span class="built_in">rotate3d</span>(<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">30deg</span>);</span></span><br><span class="line"><span class="css">    }</span></span><br><span class="line"><span class="css">    <span class="selector-class">.box</span> <span class="selector-tag">ul</span> <span class="selector-tag">li</span>{ <span class="attribute">width</span>:<span class="number">100px</span>; <span class="attribute">height</span>:<span class="number">100px</span>; <span class="attribute">position</span>: absolute; <span class="attribute">line-height</span>: <span class="number">100px</span>; <span class="attribute">text-align</span>: center; <span class="attribute">color</span>:white;<span class="attribute">font-size</span>: <span class="number">26px</span>; <span class="attribute">opacity</span>: <span class="number">0.5</span>; <span class="attribute">backface-visibility</span>: hidden;}</span></span><br><span class="line"><span class="css">    <span class="selector-class">.box</span> <span class="selector-tag">ul</span> <span class="selector-tag">li</span><span class="selector-pseudo">:nth-child</span>(<span class="number">1</span>){ <span class="attribute">background</span>:red; <span class="attribute">left</span>: <span class="number">0</span>; <span class="attribute">top</span>: <span class="number">0</span>;}</span></span><br><span class="line"><span class="css">    <span class="selector-class">.box</span> <span class="selector-tag">ul</span> <span class="selector-tag">li</span><span class="selector-pseudo">:nth-child</span>(<span class="number">2</span>){ <span class="attribute">background</span>:blue; <span class="attribute">left</span>: <span class="number">100px</span>; <span class="attribute">top</span>: <span class="number">0</span>; <span class="attribute">transform-origin</span>: left; <span class="attribute">transform</span>: <span class="built_in">rotateY</span>(<span class="number">90deg</span>);}</span></span><br><span class="line"><span class="css">    <span class="selector-class">.box</span> <span class="selector-tag">ul</span> <span class="selector-tag">li</span><span class="selector-pseudo">:nth-child</span>(<span class="number">3</span>){ <span class="attribute">background</span>:yellow; <span class="attribute">left</span>: -<span class="number">100px</span>; <span class="attribute">top</span>: <span class="number">0</span>; <span class="attribute">transform-origin</span>: right; <span class="attribute">transform</span>: <span class="built_in">rotateY</span>(-<span class="number">90deg</span>);}</span></span><br><span class="line"><span class="css">    <span class="selector-class">.box</span> <span class="selector-tag">ul</span> <span class="selector-tag">li</span><span class="selector-pseudo">:nth-child</span>(<span class="number">4</span>){ <span class="attribute">background</span>:green; <span class="attribute">left</span>: <span class="number">0</span>; <span class="attribute">top</span>: -<span class="number">100px</span>; <span class="attribute">transform-origin</span>: bottom; <span class="attribute">transform</span>:<span class="built_in">rotateX</span>(<span class="number">90deg</span>);}</span></span><br><span class="line"><span class="css">    <span class="selector-class">.box</span> <span class="selector-tag">ul</span> <span class="selector-tag">li</span><span class="selector-pseudo">:nth-child</span>(<span class="number">5</span>){ <span class="attribute">background</span>:pink; <span class="attribute">left</span>: <span class="number">0</span>; <span class="attribute">top</span>: <span class="number">100px</span>; <span class="attribute">transform-origin</span>: top; <span class="attribute">transform</span>:<span class="built_in">rotateX</span>(-<span class="number">90deg</span>);}</span></span><br><span class="line"><span class="css">    <span class="selector-class">.box</span> <span class="selector-tag">ul</span> <span class="selector-tag">li</span><span class="selector-pseudo">:nth-child</span>(<span class="number">6</span>){ <span class="attribute">background</span>:gray; <span class="attribute">left</span>: <span class="number">0</span>; <span class="attribute">top</span>: <span class="number">0</span>; <span class="attribute">transform</span>:<span class="built_in">translateZ</span>(-<span class="number">100px</span>) <span class="built_in">rotateY</span>(<span class="number">180deg</span>);}</span></span><br><span class="line"><span class="css">    <span class="selector-class">.box</span><span class="selector-pseudo">:hover</span> <span class="selector-tag">ul</span>{ <span class="attribute">transform</span>: <span class="built_in">rotate3d</span>(<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">300deg</span>);}</span></span><br><span class="line"><span class="css">    </span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>效果：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/jnylife/ImgHosting/img/202111191542818.gif"></p>
+<ol>
+<li><p>perspective（观察距离）: 离屏幕多远的距离去观察元素，值越大幅度越小。</p>
+</li>
+<li><p>perspective-origin : 观察基点位置，观察元素的角度。perspective-origin : top right。</p>
+</li>
+<li><p>transform-origin: center center -50px;   （Z轴只能写数值，不能写单词）</p>
+</li>
+<li><p>transform-style : 3D空间</p>
+<p>flat  (默认值2d)、preserve-3d   (3d，产生一个三维空间)</p>
+</li>
+<li><p>backface-visibility : 背面隐藏</p>
+<p>hidden、visible (默认值)</p>
+</li>
+</ol>
+<h2 id="旋转木马"><a href="#旋转木马" class="headerlink" title="旋转木马"></a>旋转木马</h2><figure class="highlight html"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="css"></span></span><br><span class="line"><span class="css">   *{ <span class="attribute">margin</span>:<span class="number">0</span>; <span class="attribute">padding</span>:<span class="number">0</span>;}</span></span><br><span class="line"><span class="css">   <span class="selector-tag">ul</span>{ <span class="attribute">list-style</span>: none;}</span></span><br><span class="line"><span class="css">   <span class="selector-tag">img</span>{ <span class="attribute">display</span>: block;<span class="attribute">width</span>:<span class="number">120px</span>; <span class="attribute">height</span>:<span class="number">60px</span>;}</span></span><br><span class="line"><span class="css">   <span class="selector-class">.parent</span>{ <span class="attribute">width</span>:<span class="number">600px</span>; <span class="attribute">height</span>:<span class="number">300px</span>; <span class="attribute">border</span>:<span class="number">1px</span> black solid; <span class="attribute">margin</span>: <span class="number">30px</span> auto; <span class="attribute">perspective</span>: <span class="number">700px</span>;}</span></span><br><span class="line"><span class="css">   <span class="selector-class">.parent</span> <span class="selector-tag">ul</span>{ <span class="attribute">width</span>:<span class="number">45px</span>; <span class="attribute">height</span>:<span class="number">30px</span>; <span class="attribute">margin</span>: <span class="number">100px</span> auto; <span class="attribute">position</span>: relative; <span class="attribute">transform-style</span>: preserve-<span class="number">3</span>d; <span class="attribute">transition</span>: <span class="number">2s</span>;}</span></span><br><span class="line"><span class="css">   <span class="selector-class">.parent</span> <span class="selector-tag">ul</span> <span class="selector-tag">li</span>{  <span class="attribute">width</span>:<span class="number">100%</span>; <span class="attribute">height</span>:<span class="number">100%</span>; <span class="attribute">position</span>: absolute; <span class="attribute">left</span>: <span class="number">0</span>; <span class="attribute">top</span>: <span class="number">0</span>;}</span></span><br><span class="line"><span class="css">   <span class="selector-class">.parent</span> <span class="selector-tag">ul</span> <span class="selector-tag">li</span><span class="selector-pseudo">:nth-child</span>(<span class="number">1</span>){ <span class="attribute">transform</span>: <span class="built_in">rotateY</span>(<span class="number">0</span>) <span class="built_in">translateZ</span>(<span class="number">200px</span>);}</span></span><br><span class="line"><span class="css">   <span class="selector-class">.parent</span> <span class="selector-tag">ul</span> <span class="selector-tag">li</span><span class="selector-pseudo">:nth-child</span>(<span class="number">2</span>){ <span class="attribute">transform</span>: <span class="built_in">rotateY</span>(<span class="number">60deg</span>) <span class="built_in">translateZ</span>(<span class="number">200px</span>);}</span></span><br><span class="line"><span class="css">   <span class="selector-class">.parent</span> <span class="selector-tag">ul</span> <span class="selector-tag">li</span><span class="selector-pseudo">:nth-child</span>(<span class="number">3</span>){ <span class="attribute">transform</span>: <span class="built_in">rotateY</span>(<span class="number">120deg</span>) <span class="built_in">translateZ</span>(<span class="number">200px</span>);}</span></span><br><span class="line"><span class="css">   <span class="selector-class">.parent</span> <span class="selector-tag">ul</span> <span class="selector-tag">li</span><span class="selector-pseudo">:nth-child</span>(<span class="number">4</span>){ <span class="attribute">transform</span>: <span class="built_in">rotateY</span>(<span class="number">180deg</span>) <span class="built_in">translateZ</span>(<span class="number">200px</span>);}</span></span><br><span class="line"><span class="css">   <span class="selector-class">.parent</span> <span class="selector-tag">ul</span> <span class="selector-tag">li</span><span class="selector-pseudo">:nth-child</span>(<span class="number">5</span>){ <span class="attribute">transform</span>: <span class="built_in">rotateY</span>(<span class="number">240deg</span>) <span class="built_in">translateZ</span>(<span class="number">200px</span>);}</span></span><br><span class="line"><span class="css">   <span class="selector-class">.parent</span> <span class="selector-tag">ul</span> <span class="selector-tag">li</span><span class="selector-pseudo">:nth-child</span>(<span class="number">6</span>){ <span class="attribute">transform</span>: <span class="built_in">rotateY</span>(<span class="number">300deg</span>) <span class="built_in">translateZ</span>(<span class="number">200px</span>);}</span></span><br><span class="line"><span class="css">   <span class="selector-class">.parent</span><span class="selector-pseudo">:hover</span> <span class="selector-tag">ul</span>{ <span class="attribute">transform</span>:<span class="built_in">rotateY</span>(<span class="number">360deg</span>);}</span></span><br><span class="line"><span class="css"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/jnylife/ImgHosting/img/202111191542118.gif"></p>
+<h2 id="CSS3拓展背景样式"><a href="#CSS3拓展背景样式" class="headerlink" title="CSS3拓展背景样式"></a>CSS3拓展背景样式</h2><ol>
+<li><p>background-size : 背景图的尺寸大小</p>
+<p>cover : 覆盖 ，contain : 包含 </p>
+</li>
+<li><p>background-origin : 背景图的填充位置</p>
+<p> padding-box (默认)</p>
+<p> border-box</p>
+<p> content-box</p>
+</li>
+<li><p>background-clip : 背景图的裁切方式<br>padding-box<br>border-box (默认) </p>
+<p>content-box </p>
+</li>
+</ol>
+<p>注：复合样式的时候，第一个是位置，第二个是裁切</p>
+<h2 id="图片翻转效果"><a href="#图片翻转效果" class="headerlink" title="图片翻转效果"></a>图片翻转效果</h2><figure class="highlight css"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">*{ <span class="attribute">margin</span>:<span class="number">0</span>; <span class="attribute">padding</span>:<span class="number">0</span>;}</span><br><span class="line">  <span class="selector-tag">img</span>{ <span class="attribute">display</span>: block; <span class="attribute">width</span>: <span class="number">200px</span>;<span class="attribute">height</span>:<span class="number">100px</span>;}</span><br><span class="line">  <span class="selector-class">.parent</span>{ <span class="attribute">width</span>:<span class="number">200px</span>; <span class="attribute">height</span>:<span class="number">100px</span>; <span class="attribute">margin</span>: <span class="number">200px</span> auto; <span class="attribute">position</span>: relative; <span class="attribute">perspective</span>: <span class="number">300px</span>;}</span><br><span class="line">  <span class="selector-class">.parent</span> <span class="selector-tag">div</span>{ <span class="attribute">width</span>:<span class="number">100%</span>; <span class="attribute">height</span>:<span class="number">100%</span>; <span class="attribute">position</span>: absolute; <span class="attribute">left</span>: <span class="number">0</span>; <span class="attribute">top</span>: <span class="number">0</span>; <span class="attribute">backface-visibility</span>: hidden; <span class="attribute">transition</span>: .<span class="number">5s</span>;}</span><br><span class="line"></span><br><span class="line">  <span class="selector-class">.parent</span> <span class="selector-tag">div</span><span class="selector-pseudo">:first</span>-child{ <span class="attribute">transform</span>: <span class="built_in">rotateY</span>(<span class="number">0</span>); }</span><br><span class="line">  <span class="selector-class">.parent</span> <span class="selector-tag">div</span><span class="selector-pseudo">:last-child</span>{ <span class="attribute">transform</span>: <span class="built_in">rotateY</span>(-<span class="number">180deg</span>);}</span><br><span class="line"></span><br><span class="line">  <span class="selector-class">.parent</span><span class="selector-pseudo">:hover</span> <span class="selector-tag">div</span><span class="selector-pseudo">:first</span>-child{ <span class="attribute">transform</span>: <span class="built_in">rotateY</span>(<span class="number">180deg</span>); }</span><br><span class="line">  <span class="selector-class">.parent</span><span class="selector-pseudo">:hover</span> <span class="selector-tag">div</span><span class="selector-pseudo">:last-child</span>{ <span class="attribute">transform</span>: <span class="built_in">rotateY</span>(<span class="number">0</span>);}</span><br></pre></td></tr></tbody></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/jnylife/ImgHosting/img/202111191542237.gif"></p>
+<h2 id="CSS3线性渐变"><a href="#CSS3线性渐变" class="headerlink" title="CSS3线性渐变"></a>CSS3线性渐变</h2><ol>
+<li><p>线性渐变 -&gt; linear-gradient是值，需要添加到background-image属性上</p>
+<p>注：渐变的0度是在页面在下边，正值会按照顺时针旋转，负值按逆时针旋转。</p>
+</li>
+</ol>
+<h2 id="iconfont矢量图标库"><a href="#iconfont矢量图标库" class="headerlink" title="iconfont矢量图标库"></a>iconfont矢量图标库</h2><p>链接：<a target="_blank" rel="noopener" href="https://www.iconfont.cn/?spm=a313x.7781069.1998910419.d4d0a486a"> 阿里巴巴矢量图标库</a></p>
+<p>图标引入</p>
+<figure class="highlight html"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">href</span>=<span class="string">"./css/iconfont.css"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"./css/iconfont.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span> /*彩色图标引入js才是彩色 */</span><br></pre></td></tr></tbody></table></figure>
+
+<figure class="highlight html"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"iconfont iconDollar"</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"iconfont iconcompass"</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"iconfont iconfood-strawberry"</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br></pre></td></tr></tbody></table></figure>
+
+<h2 id="text-shadow"><a href="#text-shadow" class="headerlink" title="text-shadow"></a>text-shadow</h2><div style="font-size:30px;text-shadow:3px 3px  pink">hello world</div>
+
+<figure class="highlight html"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">"font-size:20px;text-shadow:3px 3px  pink"</span>&gt;</span>hello world<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></tbody></table></figure>
+
+<div style="font-size:30px;text-shadow:3px 3px 2px skyblue">hello world</div>
+
+<figure class="highlight html"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&nbsp;<span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">"font-size:30px;text-shadow:3px 3px  skyblue"</span>&gt;</span>hello world<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></tbody></table></figure>
+
+<div style="font-size:30px; color: white;text-shadow: 2px 2px 4px #000000;">hello world</div>
+
+<figure class="highlight html"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">"font-size:30px; color: white;text-shadow: 2px 2px 4px #000000;"</span>&gt;</span>hello world<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></tbody></table></figure>
+
+<div style="font-size:30px; color: white;text-shadow: 1px 1px 2px black, 0 0 25px blue, 0 0 5px darkblue;">hello world</div>
+
+<figure class="highlight html"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">"font-size:30px; color: white;text-shadow: 1px 1px 2px black, 0 0 25px blue, 0 0 5px darkblue;"</span>&gt;</span>hello world<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></tbody></table></figure>
+
+<div style="font-size:30px;  color: pink;text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;">hello world</div>
+
+<figure class="highlight html"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">"font-size:30px;  color: pink;text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;"</span>&gt;</span>hello world<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></tbody></table></figure>
+
+<h2 id="box-shadow"><a href="#box-shadow" class="headerlink" title="box-shadow"></a>box-shadow</h2><div style="font-size:30px; color: white;text-shadow: 2px 2px 4px #000000;">卡片材质效果：</div>
+
+<div style="  width: 250px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  text-align: center ;margin:5px auto;">
+  <img src="https://cdn.jsdelivr.net/gh/jnylife/ImgHosting/img/202111160037772.jpg" alt="Shanghai" style="width:100%">
+  <div style="padding:10px">
+    <p>《phaseless》-Pacemak1r</p>
+  </div>
+</div>
+
+
+<figure class="highlight html"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">"  width: 250px;</span></span></span><br><span class="line"><span class="string"><span class="tag">  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);</span></span></span><br><span class="line"><span class="string"><span class="tag">  text-align: center ;margin:5px auto;"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"CSS3/pg.jpg"</span> <span class="attr">alt</span>=<span class="string">"pgone"</span> <span class="attr">style</span>=<span class="string">"width:100%"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">"padding:10px"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>《phaseless》-pgone<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>  box-shadow: h-shadow v-shadow blur spread color inset;</p>
+<h2 id="分栏布局"><a href="#分栏布局" class="headerlink" title="分栏布局"></a>分栏布局</h2><ol>
+<li><p>column-count : 分栏的个数</p>
+</li>
+<li><p>column-width : 分栏的宽度 </p>
+</li>
+<li><p>column-gap : 分栏的间距   </p>
+</li>
+<li><p>column-rule : 分栏的边线</p>
+</li>
+<li><p>column-span : 合并分栏</p>
+</li>
+</ol>
+<p><strong>注:分栏的宽度和 分栏个数只能设置一个。</strong></p>
+<h2 id="CSS3伪元素"><a href="#CSS3伪元素" class="headerlink" title="CSS3伪元素"></a>CSS3伪元素</h2><p>CSS 伪元素用于设置元素指定部分的样式。</p>
+<p>例如，它可用于：</p>
+<ul>
+<li>设置元素的首字母、首行的样式</li>
+<li>在元素的内容之前或之后插入内容</li>
+</ul>
+<p>请注意<em>双冒号表示法</em> - ::first-line 对比 :first-line</p>
+<ul>
+<li><p>在 CSS3 中，双冒号取代了伪元素的单冒号表示法。这是 W3C 试图区分<em>伪类</em>和<em>伪元素</em>的尝试。</p>
+</li>
+<li><p>在 CSS2 和 CSS1 中，伪类和伪元素都使用了单冒号语法。为了向后兼容，CSS2 和 CSS1 伪元素可接受单冒号语法。</p>
+</li>
+</ul>
+<h2 id="CSS-hack"><a href="#CSS-hack" class="headerlink" title="CSS hack"></a>CSS hack</h2><h3 id="什么是CSS-hack"><a href="#什么是CSS-hack" class="headerlink" title="什么是CSS hack"></a>什么是CSS hack</h3><p>不同厂商和浏览器的版本不同（如IE6-IE11,Firefox/Safari/Opera/Chrome等），导致CSS写法不同，解析方式不同，最后在页面上显示的效果也不同。为了统一在页面上的显示效果，针对不同浏览器写相应的CSS，这种方法称为CSS hack。</p>
+<h3 id="CSS-hack-分类"><a href="#CSS-hack-分类" class="headerlink" title="CSS hack 分类"></a>CSS hack 分类</h3><ol>
+<li><p>CSS属性前缀法<br>.elem{ _background:red; }</p>
+</li>
+<li><p>选择器前缀法</p>
+<p>*html .elem{ }</p>
+</li>
+<li><p>IE条件注释法</p>
+<p>IE10以上已经不支持注释法。</p>
+</li>
+</ol>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/freshlover/article/details/12132801">详情见：史上最全的CSS hack方式一览_freshlover的专栏-CSDN博客_css hack</a></p>
+<h2 id="渐进增强和优雅降级"><a href="#渐进增强和优雅降级" class="headerlink" title="渐进增强和优雅降级"></a>渐进增强和优雅降级</h2><ol>
+<li>什么是渐进增强</li>
+</ol>
+<p>在网页开发中，渐进增强认为应该专注于内容本身。一开始针对低版本的浏览器构建页面，满足最基本的功能，再针对高级浏 览器进行效果，交互，追加各种功能以达到更好用户体验,换句话说，就是以最低要求，实现最基础功能为基本，向上兼容。以css为例，以下这种写法就是渐进增强。</p>
+<ol start="2">
+<li>什么是优雅降级</li>
+</ol>
+<p>在网页开发中，优雅降级指的是一开始针对一个高版本的浏览器构建页面，先完善所有的功能。然后针对各个不同的浏览器进行测试，修复，保证低级浏览器也有基本功能 就好，低级浏览器被认为“简陋却无妨 (poor, but passable)” 可以做一些小的调整来适应某个特定的浏览器。但由于它们并非我们所关注的焦点，因此除了修复较 大的错误之外，其它的差异将被直接忽略。也就是以高要求，高版本为基准，向下兼容。同样以css为例，优雅降级的写法如下。</p>
+<figure class="highlight css"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.transition</span>{</span><br><span class="line">  -webkit-<span class="attribute">transition</span>: all .<span class="number">5s</span>;</span><br><span class="line">     -moz-<span class="attribute">transition</span>: all .<span class="number">5s</span>;</span><br><span class="line">       -o-<span class="attribute">transition</span>: all .<span class="number">5s</span>;</span><br><span class="line">          <span class="attribute">transition</span>: all .<span class="number">5s</span>;  </span><br><span class="line">}</span><br><span class="line"><span class="comment">/*渐进增强*/</span></span><br></pre></td></tr></tbody></table></figure>
+
+<figure class="highlight css"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.transition</span>{ </span><br><span class="line">　　     <span class="attribute">transition</span>: all .<span class="number">5s</span>;</span><br><span class="line">　　  -o-<span class="attribute">transition</span>: all .<span class="number">5s</span>;</span><br><span class="line">  　-moz-<span class="attribute">transition</span>: all .<span class="number">5s</span>;</span><br><span class="line"> -webkit-<span class="attribute">transition</span>: all .<span class="number">5s</span>;</span><br><span class="line">}</span><br><span class="line"><span class="comment">/*优雅降级*/</span></span><br></pre></td></tr></tbody></table></figure>
+
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">今年勇</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://www.jnylife.com/2021/11/19/CSS3/">https://www.jnylife.com/2021/11/19/CSS3/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://www.jnylife.com" target="_blank">JnyLife</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/CSS3/">CSS3</a><a class="post-meta__tags" href="/tags/animation/">animation</a></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/gh/jnylife/ImgHosting/img/202111191541129.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer=""></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2021/11/19/Flex%E5%BC%B9%E6%80%A7%E5%B8%83%E5%B1%80/"><img class="prev-cover" src="https://cdn.jsdelivr.net/gh/jnylife/ImgHosting/img/202111191654281.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">Flex弹性布局</div></div></a></div><div class="next-post pull-right"><a href="/2021/11/14/test/"><img class="next-cover" src="https://cdn.jsdelivr.net/gh/jnylife/ImgHosting/img/202111202344598.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">test</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2021/11/19/Flex%E5%BC%B9%E6%80%A7%E5%B8%83%E5%B1%80/" title="Flex弹性布局"><img class="cover" src="https://cdn.jsdelivr.net/gh/jnylife/ImgHosting/img/202111191654281.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-11-19</div><div class="title">Flex弹性布局</div></div></a></div></div></div><hr><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://cdn.jsdelivr.net/gh/jnylife/ImgHosting/img/202112241523748.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"></div><div class="author-info__name">今年勇</div><div class="author-info__description">韬光晦迹，潜龙勿用。</div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">26</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">46</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">10</div></a></div></div><div class="card-info-social-icons is-center"><a class="social-icon" href="tencent://AddContact/?fromId=45&amp;fromSubId=1&amp;subcmd=all&amp;uin=861722386&amp;website=www.oicqzone.com" target="_blank" title=""><i class="fab fa-qq"></i></a><a class="social-icon" href="mailto:861722386@qq.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a><a class="social-icon" href="https://github.com/jnylife" target="_blank" title=""><i class="fab fa-github"></i></a><a class="social-icon" href="https://cdn.jsdelivr.net/gh/jnylife/ImgHosting@latest/img/f3a13fcde87fc2ce2aefdb6db9d5e73.png" target="_blank" title=""><i class="fab fa-weixin"></i></a><a class="social-icon" href="https://ymktchic.vercel.app/" target="_blank" title=""><i class="fab fa-edge"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>简介</span></div><div class="announcement_content">博主22届本科毕业，前端攻城狮，在这里分享知识与日常总结。<br>我的技术栈：<br><img class="entered loading" src="https://img.shields.io/badge/-React-282c34?logo=react" data-ll-status="loading">&nbsp;<img src="https://img.shields.io/badge/-TypeScript-blue?logo=typescript&amp;logoColor=white" data-ll-status="loading" class="entered loading">&nbsp;<img src="https://img.shields.io/badge/-JavaScript-yellow?logo=javascript&amp;logoColor=white" data-ll-status="loading" class="entered loading"><div class="xpand" style="height:200px;"><canvas class="illo" width="800" height="800" style="max-width: 200px; max-height: 200px; touch-action: none; width: 640px; height: 640px;"></canvas></div></div><script src="https://cdn.jsdelivr.net/gh/xiaopengand/blogCdn@latest/xzxr/twopeople1.js"></script><script src="https://cdn.jsdelivr.net/gh/xiaopengand/blogCdn@latest/xzxr/zdog.dist.js"></script><script id="rendered-js" src="https://cdn.jsdelivr.net/gh/xiaopengand/blogCdn@latest/xzxr/twopeople.js"></script><style>.card-widget.card-announcement {
+margin: 0;
+align-items: center;
+justify-content: center;
+text-align: center;
+}
+canvas {
+display: block;
+margin: 0 auto;
+cursor: move;
+}</style></div><div class="card-widget" id="card-poem"><div id="poem_sentence"></div><div id="poem_info"><div id="poem_dynasty"></div><div id="poem_author"></div></div></div><script src="https://cdn.jsdelivr.net/gh/zhheo/JS-Heo@main/poem/jinrishici.js" charset="utf-8"></script><script type="text/javascript">jinrishici.load(function(result) {
+var sentence = document.querySelector("#poem_sentence")
+var author = document.querySelector("#poem_author")
+var dynasty = document.querySelector("#poem_dynasty")
+
+var sentenceText = result.data.content
+sentenceText = sentenceText.substr(0, sentenceText.length - 1);
+sentence.innerHTML = sentenceText
+dynasty.innerHTML = result.data.origin.dynasty
+author.innerHTML = result.data.origin.author + '《' + result.data.origin.title + '》'
+});</script><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#CSS3"><span class="toc-number">1.</span> <span class="toc-text">CSS3</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B5%8F%E8%A7%88%E5%99%A8%E5%86%85%E6%A0%B8"><span class="toc-number">1.1.</span> <span class="toc-text">浏览器内核</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#transition%E8%BF%87%E6%B8%A1"><span class="toc-number">1.2.</span> <span class="toc-text">transition过渡</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#transition"><span class="toc-number">1.2.1.</span> <span class="toc-text">transition</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#transform%E5%8F%98%E5%8C%96"><span class="toc-number">1.3.</span> <span class="toc-text">transform变化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#animaion%E5%8A%A8%E7%94%BB"><span class="toc-number">1.4.</span> <span class="toc-text">animaion动画</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#animation%E5%AE%9E%E7%8E%B0%E5%8A%A8%E7%94%BB%E5%8A%A0%E8%BD%BD%E6%95%88%E6%9E%9C"><span class="toc-number">1.4.1.</span> <span class="toc-text">animation实现动画加载效果</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#transform3D"><span class="toc-number">1.5.</span> <span class="toc-text">transform3D</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%81%9A%E4%B8%80%E4%B8%AA3d%E7%AB%8B%E6%96%B9%E4%BD%93"><span class="toc-number">1.5.1.</span> <span class="toc-text">做一个3d立方体</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%97%8B%E8%BD%AC%E6%9C%A8%E9%A9%AC"><span class="toc-number">1.6.</span> <span class="toc-text">旋转木马</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CSS3%E6%8B%93%E5%B1%95%E8%83%8C%E6%99%AF%E6%A0%B7%E5%BC%8F"><span class="toc-number">1.7.</span> <span class="toc-text">CSS3拓展背景样式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%BE%E7%89%87%E7%BF%BB%E8%BD%AC%E6%95%88%E6%9E%9C"><span class="toc-number">1.8.</span> <span class="toc-text">图片翻转效果</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CSS3%E7%BA%BF%E6%80%A7%E6%B8%90%E5%8F%98"><span class="toc-number">1.9.</span> <span class="toc-text">CSS3线性渐变</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#iconfont%E7%9F%A2%E9%87%8F%E5%9B%BE%E6%A0%87%E5%BA%93"><span class="toc-number">1.10.</span> <span class="toc-text">iconfont矢量图标库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#text-shadow"><span class="toc-number">1.11.</span> <span class="toc-text">text-shadow</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#box-shadow"><span class="toc-number">1.12.</span> <span class="toc-text">box-shadow</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E6%A0%8F%E5%B8%83%E5%B1%80"><span class="toc-number">1.13.</span> <span class="toc-text">分栏布局</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CSS3%E4%BC%AA%E5%85%83%E7%B4%A0"><span class="toc-number">1.14.</span> <span class="toc-text">CSS3伪元素</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CSS-hack"><span class="toc-number">1.15.</span> <span class="toc-text">CSS hack</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFCSS-hack"><span class="toc-number">1.15.1.</span> <span class="toc-text">什么是CSS hack</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CSS-hack-%E5%88%86%E7%B1%BB"><span class="toc-number">1.15.2.</span> <span class="toc-text">CSS hack 分类</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B8%90%E8%BF%9B%E5%A2%9E%E5%BC%BA%E5%92%8C%E4%BC%98%E9%9B%85%E9%99%8D%E7%BA%A7"><span class="toc-number">1.16.</span> <span class="toc-text">渐进增强和优雅降级</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2022/03/23/%E5%88%A9%E7%94%A8%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%90%AD%E5%BB%BAbutterfly%E4%B8%BB%E9%A2%98%E5%8D%9A%E5%AE%A2/" title="利用云服务器搭建butterfly主题博客"><img src="https://cdn.jsdelivr.net/gh/jnylife/ImgHosting/img/202111211000900.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="利用云服务器搭建butterfly主题博客"></a><div class="content"><a class="title" href="/2022/03/23/%E5%88%A9%E7%94%A8%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%90%AD%E5%BB%BAbutterfly%E4%B8%BB%E9%A2%98%E5%8D%9A%E5%AE%A2/" title="利用云服务器搭建butterfly主题博客">利用云服务器搭建butterfly主题博客</a><time datetime="2022-03-23T02:39:38.000Z" title="发表于 2022-03-23 10:39:38">2022-03-23</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/03/09/%E5%93%87%EF%BC%81%E7%AB%9F%E7%84%B6%E4%BC%9A%E6%9C%89%E8%BF%99%E4%B9%88%E5%A5%BD%E7%9C%8B%E7%9A%84%E6%8C%89%E9%92%AE/" title="哇！怎么会有这么好看的按钮！"><img src="http://cdn.ymktchic.top/img/202203092028926.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="哇！怎么会有这么好看的按钮！"></a><div class="content"><a class="title" href="/2022/03/09/%E5%93%87%EF%BC%81%E7%AB%9F%E7%84%B6%E4%BC%9A%E6%9C%89%E8%BF%99%E4%B9%88%E5%A5%BD%E7%9C%8B%E7%9A%84%E6%8C%89%E9%92%AE/" title="哇！怎么会有这么好看的按钮！">哇！怎么会有这么好看的按钮！</a><time datetime="2022-03-09T12:26:19.000Z" title="发表于 2022-03-09 20:26:19">2022-03-09</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/01/21/butterfly%E4%B8%BB%E9%A2%98%E5%AE%9E%E7%8E%B0%E7%99%BD%E5%A4%A9%E5%A4%9C%E6%99%9A%E5%88%87%E6%8D%A2%E5%8A%A8%E7%94%BB/" title="butterfly主题实现白天夜晚切换动画"><img src="http://cdn.ymktchic.top/img/202201211544798.gif" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="butterfly主题实现白天夜晚切换动画"></a><div class="content"><a class="title" href="/2022/01/21/butterfly%E4%B8%BB%E9%A2%98%E5%AE%9E%E7%8E%B0%E7%99%BD%E5%A4%A9%E5%A4%9C%E6%99%9A%E5%88%87%E6%8D%A2%E5%8A%A8%E7%94%BB/" title="butterfly主题实现白天夜晚切换动画">butterfly主题实现白天夜晚切换动画</a><time datetime="2022-01-21T07:33:10.000Z" title="发表于 2022-01-21 15:33:10">2022-01-21</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/01/02/Vue%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E2%91%A3/" title="Vue学习笔记④"><img src="https://cdn.jsdelivr.net/gh/jnylife/ImgHosting/img/202112131527508.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Vue学习笔记④"></a><div class="content"><a class="title" href="/2022/01/02/Vue%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E2%91%A3/" title="Vue学习笔记④">Vue学习笔记④</a><time datetime="2022-01-02T09:19:33.000Z" title="发表于 2022-01-02 17:19:33">2022-01-02</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/12/30/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%90%AD%E5%BB%BA%E9%9D%92%E9%BE%99%E9%9D%A2%E6%9D%BF%E6%8B%BF%E4%BA%AC%E8%B1%86/" title="云服务器搭建青龙面板每日自动拿京豆"><img src="https://cdn.jsdelivr.net/gh/jnylife/ImgHosting/img/202112301429419.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="云服务器搭建青龙面板每日自动拿京豆"></a><div class="content"><a class="title" href="/2021/12/30/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%90%AD%E5%BB%BA%E9%9D%92%E9%BE%99%E9%9D%A2%E6%9D%BF%E6%8B%BF%E4%BA%AC%E8%B1%86/" title="云服务器搭建青龙面板每日自动拿京豆">云服务器搭建青龙面板每日自动拿京豆</a><time datetime="2021-12-30T06:13:53.000Z" title="发表于 2021-12-30 14:13:53">2021-12-30</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">©2021 - 2022  <i id="heartbeat" class="fa fas fa-heart"></i> 今年勇</div><div class="footer_custom_text"><span style="margin-top:5px;display:inline-block;font-size:14px;">韬光晦迹，潜龙勿用。</span> <p></p> <p><a target="_blank" href="https://hexo.io/"><img src="https://img.shields.io/badge/Frame-Hexo-blue?style=flat&amp;logo=hexo" title="博客框架为Hexo" data-ll-status="loading" class="entered loading"></a>&nbsp;<a target="_blank" href="https://demo.jerryc.me/"><img src="https://img.shields.io/badge/Theme-Butterfly-6513df?style=flat&amp;logo=bitdefender" title="主题采用butterfly" data-ll-status="loading" class="entered loading"></a>&nbsp;<a target="_blank" href="https://metroui.org.ua/index.html "><img src="https://img.shields.io/badge/CDN-jsDelivr-orange?style=flat&amp;logo=jsDelivr" title="本站使用JsDelivr为静态资源提供CDN加速" data-ll-status="loading" class="entered loading"></a> &nbsp;<a target="_blank" href="https://vercel.com/ "><img src="https://img.shields.io/badge/Hosted-Vervel-brightgreen?style=flat&amp;logo=Vercel" title="本站采用双线部署，默认线路托管于Vercel" data-ll-status="loading" class="entered loading"></a>&nbsp;<a class="github-badge" target="_blank" href="https://beian.miit.gov.cn" style="margin-inline:5px" title="本站已在工信部备案，备案号浙ICP备-2022001668号"><img src="http://cdn.ymktchic.top/img/202201212329189.svg" data-lazy-src="" alt="" data-ll-status="loaded" class="entered loaded"></a>&nbsp;<a target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img src="https://img.shields.io/badge/Copyright-BY--NC--SA%204.0-d42328?style=flat&amp;logo=Claris" title="本站采用知识共享署名-非商业性使用-相同方式共享4.0国际许可协议进行许可" data-ll-status="loading" class="entered loading"></a> <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="95" height="20" role="img" aria-label="CDN:又拍云"><title>CDN:又拍云</title><linearGradient id="s" x2="0" y2="100%"><stop offset="0" stop-color="#bbb" stop-opacity=".1"></stop><stop offset="1" stop-opacity=".1"></stop></linearGradient><clipPath id="r"><rect width="95" height="20" rx="3" fill="#fff"></rect></clipPath><g clip-path="url(#r)"><rect width="52" height="20" fill="#555"></rect><rect x="52" width="43" height="20" fill="#00b6ff"></rect><rect width="95" height="20" fill="url(#s)"></rect></g><g fill="#fff" text-anchor="middle" font-family="Verdana,Geneva,DejaVu Sans,sans-serif" text-rendering="geometricPrecision" font-size="110"><image x="5" y="3" width="14" height="14" xlink:href="https://developer.qiniu.com/assets/logo-white-b90d685a6b146884636382426d11b7236f5f7ca1c5dfafdb6fa777a0f976fc1f.png"></image><text aria-hidden="true" x="355" y="150" fill="#010101" fill-opacity=".3" transform="scale(.1)" textLength="250">CDN</text><text x="355" y="140" transform="scale(.1)" fill="#fff" textLength="250">CDN</text><text aria-hidden="true" x="725" y="150" fill="#010101" fill-opacity=".3" transform="scale(.1)" textLength="330">七牛云</text><text x="725" y="140" transform="scale(.1)" fill="#fff" textLength="330">七牛云</text></g></svg></p></div></div><div class="container" id="jsi-flying-fish-container"></div><style>@media only screen and (max-width: 767px){
+  #sidebar_search_box input[type=text]{width:calc(100% - 24px)}
+}</style></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="chat_btn" type="button" title="rightside.chat_btn"><i class="fas fa-sms"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"></div></div></div><hr><div id="local-search-results"></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>function loadValine () {
+  function initValine () {
+    const valine = new Valine(Object.assign({
+      el: '#vcomment',
+      appId: 'UsAOahHRL00zbr9XoYvG75xG-gzGzoHsz',
+      appKey: 'eOMmXKfD4QaFClojMKTFtKeg',
+      placeholder: '留下你的足迹吧（个人信息可填可不填哦）',
+      avatar: 'monsterid',
+      meta: 'nick'.split(','),
+      pageSize: '10',
+      lang: 'zh-CN',
+      recordIP: false,
+      serverURLs: '',
+      emojiCDN: '',
+      emojiMaps: "",
+      enableQQ: true,
+      path: window.location.pathname,
+      master: '6638760c412476eca16f3bf2998aa169',   //博主邮箱md5
+      tagMeta: ["小帅哥","好朋友","访客"],     //标识字段名
+      friends:  ["43e87c41aff98c9d86ac6c621aa9498e","c41ce1442cc602586d8bd9d71fbc55ab"],  //小伙伴邮箱Md5
+      metaPlaceholder: {"nick":"QQ号"},
+      requiredFields: ["nick"],
+      visitor: false
+    }, null))
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else getScript('https://cdn.jsdelivr.net/gh/tzy13755126023/BLOG_SOURCE/valine_f/valine.min.js').then(initValine)
+}
+
+if ('Valine' === 'Valine' || !true) {
+  if (true) btf.loadComment(document.getElementById('vcomment'),loadValine)
+  else setTimeout(loadValine, 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script></div><canvas id="universe"></canvas><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script defer="" src="/js/universe.js"></script><script>var a = document.getElementsByTagName("button");console.log(a[10])</script><script data-pjax="" src="https://cdn.jsdelivr.net/gh/Jnylife/CDN@1.3/js/fish.js"></script><script async="" data-pjax="" src="/js/randombg.js"></script><script src="/js/bber.js"><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/click-heart.min.js" async="async" mobile="true"></script><script src="//code.tidio.co/x12qsfd511anbxdjefhc0xk4jkornh0j.js" async="async"></script><script>function onTidioChatApiReady() {
+  window.tidioChatApi.hide();
+  window.tidioChatApi.on("close", function() {
+    window.tidioChatApi.hide();
+  });
+}
+if (window.tidioChatApi) {
+  window.tidioChatApi.on("ready", onTidioChatApiReady);
+} else {
+  document.addEventListener("tidioChat-ready", onTidioChatApiReady);
+}
+
+var chatBtnFn = () => {
+  document.getElementById("chat_btn").addEventListener("click", function(){
+    window.tidioChatApi.show();
+    window.tidioChatApi.open();
+  });
+}
+chatBtnFn()
+</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/gh/metowolf/MetingJS@1.2/dist/Meting.min.js"></script><script async="" data-pjax="" src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

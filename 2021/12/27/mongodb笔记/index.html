@@ -1,0 +1,839 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>mongodb笔记 | JnyLife</title><meta name="keywords" content="Mongodb"><meta name="author" content="今年勇"><meta name="copyright" content="今年勇"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="MongoDB相关概念业务应用场景传统的关系型数据库（如MySQL），在数据操作的“三高”需求以及应对Web2.0的网站需求面前，显得力不从心。解释：“三高”需求： • High performance - 对数据库高并发读写的需求。 • Huge Storage - 对海量数据的高效率存储和访问的需求。 High Scalability &amp;&amp; High Availability-">
+<meta property="og:type" content="article">
+<meta property="og:title" content="mongodb笔记">
+<meta property="og:url" content="https://www.jnylife.com/2021/12/27/mongodb%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:site_name" content="JnyLife">
+<meta property="og:description" content="MongoDB相关概念业务应用场景传统的关系型数据库（如MySQL），在数据操作的“三高”需求以及应对Web2.0的网站需求面前，显得力不从心。解释：“三高”需求： • High performance - 对数据库高并发读写的需求。 • Huge Storage - 对海量数据的高效率存储和访问的需求。 High Scalability &amp;&amp; High Availability-">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/jnylife/ImgHosting/img/202112271405483.jpg">
+<meta property="article:published_time" content="2021-12-27T06:02:40.000Z">
+<meta property="article:modified_time" content="2021-12-30T07:34:57.685Z">
+<meta property="article:author" content="今年勇">
+<meta property="article:tag" content="Mongodb">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/jnylife/ImgHosting/img/202112271405483.jpg"><link rel="shortcut icon" href="/img/cab.png"><link rel="canonical" href="https://www.jnylife.com/2021/12/27/mongodb%E7%AC%94%E8%AE%B0/"><link rel="preconnect" href="//cdn.jsdelivr.net"><link rel="preconnect" href="//hm.baidu.com"><link rel="preconnect" href="//busuanzi.ibruce.info"><meta name="google-site-verification" content="_FeGZdj9RIiBCN55GHRicNWjHWJOWYMHqjZAQ_I3OL8"><meta name="baidu-site-verification" content="code-CZoubPbyzy"><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?806a62e722e336112b983d34d218c6c5";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":200},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'mongodb笔记',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2021-12-30 15:34:57'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if (GLOBAL_CONFIG_SITE.isHome && /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"><link rel="stylesheet" href="/css/test2.css"><link rel="stylesheet" href="/css/universe.css"><link rel="stylesheet" href="/css/map.css"><link rel="stylesheet" href="/css/iconfont.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/zhheo/JS-Heo@main/bb/showbb_in_index.css"><link rel="stylesheet" href="/css/cursor.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/HCLonely/images@master/others/heartbeat.min.css"><link rel="stylesheet" href="/css/test.css"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/zhheo/JS-Heo@main/mainColor/heoMainColor.css"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/zhheo/JS-Heo@main/poem/poem.css"><link rel="stylesheet" href="/css/test3.css"><link rel="stylesheet" href="/css/modify.css"></head><body><svg aria-hidden="true" style="position:absolute; overflow:hidden; width:0; height:0"><symbol id="icon-sun" viewBox="0 0 1024 1024"><path d="M960 512l-128 128v192h-192l-128 128-128-128H192v-192l-128-128 128-128V192h192l128-128 128 128h192v192z" fill="#FFD878" p-id="8420"></path><path d="M736 512a224 224 0 1 0-448 0 224 224 0 1 0 448 0z" fill="#FFE4A9" p-id="8421"></path><path d="M512 109.248L626.752 224H800v173.248L914.752 512 800 626.752V800h-173.248L512 914.752 397.248 800H224v-173.248L109.248 512 224 397.248V224h173.248L512 109.248M512 64l-128 128H192v192l-128 128 128 128v192h192l128 128 128-128h192v-192l128-128-128-128V192h-192l-128-128z" fill="#4D5152" p-id="8422"></path><path d="M512 320c105.888 0 192 86.112 192 192s-86.112 192-192 192-192-86.112-192-192 86.112-192 192-192m0-32a224 224 0 1 0 0 448 224 224 0 0 0 0-448z" fill="#4D5152" p-id="8423"></path></symbol><symbol id="icon-moon" viewBox="0 0 1024 1024"><path d="M611.370667 167.082667a445.013333 445.013333 0 0 1-38.4 161.834666 477.824 477.824 0 0 1-244.736 244.394667 445.141333 445.141333 0 0 1-161.109334 38.058667 85.077333 85.077333 0 0 0-65.066666 135.722666A462.08 462.08 0 1 0 747.093333 102.058667a85.077333 85.077333 0 0 0-135.722666 65.024z" fill="#FFB531" p-id="11345"></path><path d="M329.728 274.133333l35.157333-35.157333a21.333333 21.333333 0 1 0-30.165333-30.165333l-35.157333 35.157333-35.114667-35.157333a21.333333 21.333333 0 0 0-30.165333 30.165333l35.114666 35.157333-35.114666 35.157334a21.333333 21.333333 0 1 0 30.165333 30.165333l35.114667-35.157333 35.157333 35.157333a21.333333 21.333333 0 1 0 30.165333-30.165333z" fill="#030835" p-id="11346"></path></symbol></svg><a onclick="switchNightMode()" class="icon-V hidden" title="切换日间/夜间模式"><svg width="48" height="48" viewBox="0 0 1024 1024"><use id="modeicon" xlink:href="#icon-moon"></use></svg></a><link rel="stylesheet" href="//at.alicdn.com/t/font_2963292_48tizpxed9i.css"><meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="JnyLife" type="application/atom+xml">
+<div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://cdn.jsdelivr.net/gh/jnylife/ImgHosting/img/202112241523748.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">26</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">46</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">10</div></a></div></div></div><hr><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-book"></i><span> 文章</span><i class="fas fa-chevron-down expand hide"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-th-large"></i><span> 宝箱</span><i class="fas fa-chevron-down expand hide"></i></a><ul class="menus_item_child"><li><a class="site-page child" target="_blank" rel="noopener" href="https://admin.ymktchic.top/"><i class="fa-fw fas fa-user-shield"></i><span> 评论管理</span></a></li><li><a class="site-page child" target="_blank" rel="noopener" href="http://ymktchic.top/index.php/login"><i class="fa-fw fas fa-cloud"></i><span> 我的云盘</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-photo-video"></i><span> 生活</span><i class="fas fa-chevron-down expand hide"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/photos/"><i class="fa-fw fas fa-image"></i><span> 相册</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 视频</span></a></li><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-compact-disc"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/eassy/"><i class="fa-fw fas fa-grin-wink"></i><span> 说说</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/messageboard/"><i class="fa-fw fas fa-comments"></i><span> 留言板</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://cdn.jsdelivr.net/gh/jnylife/ImgHosting/img/202112271405483.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">JnyLife</a></span><div id="he-plugin-simple"></div>  <div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-book"></i><span> 文章</span><i class="fas fa-chevron-down expand hide"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-th-large"></i><span> 宝箱</span><i class="fas fa-chevron-down expand hide"></i></a><ul class="menus_item_child"><li><a class="site-page child" target="_blank" rel="noopener" href="https://admin.ymktchic.top/"><i class="fa-fw fas fa-user-shield"></i><span> 评论管理</span></a></li><li><a class="site-page child" target="_blank" rel="noopener" href="http://ymktchic.top/index.php/login"><i class="fa-fw fas fa-cloud"></i><span> 我的云盘</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-photo-video"></i><span> 生活</span><i class="fas fa-chevron-down expand hide"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/photos/"><i class="fa-fw fas fa-image"></i><span> 相册</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 视频</span></a></li><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-compact-disc"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/eassy/"><i class="fa-fw fas fa-grin-wink"></i><span> 说说</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/messageboard/"><i class="fa-fw fas fa-comments"></i><span> 留言板</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">mongodb笔记</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-12-27T06:02:40.000Z" title="发表于 2021-12-27 14:02:40">2021-12-27</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-12-30T07:34:57.685Z" title="更新于 2021-12-30 15:34:57">2021-12-30</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%89%8D%E7%AB%AF%E5%AD%A6%E4%B9%A0/">前端学习</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">9.9k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>37分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="mongodb笔记"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><div class="top-img" style="background-image: url('https://cdn.jsdelivr.net/gh/jnylife/ImgHosting/img/202112271405483.jpg');"></div><article class="post-content" id="article-container"><h1 id="MongoDB相关概念"><a href="#MongoDB相关概念" class="headerlink" title="MongoDB相关概念"></a>MongoDB相关概念</h1><h2 id="业务应用场景"><a href="#业务应用场景" class="headerlink" title="业务应用场景"></a>业务应用场景</h2><p>传统的关系型数据库（如MySQL），在数据操作的“三高”需求以及应对Web2.0的网站需求面前，显得力不从心。解释：“三高”需求：</p>
+<p>• High performance - 对数据库高并发读写的需求。</p>
+<p>• Huge Storage - 对海量数据的高效率存储和访问的需求。</p>
+<p>High Scalability &amp;&amp; High Availability- 对数据库的高可扩展性和高可用性的需求。</p>
+<p><strong>而MongoDB可应对“三高”需求。</strong></p>
+<p>具体的应用场景如：</p>
+<ul>
+<li>1） 社交场景，使用 MongoDB 存储存储用户信息，以及用户发表的朋友圈信息，通过地理位置索引实现附近的人、地点等功能。</li>
+<li>2） 游戏场景，使用 MongoDB 存储游戏用户信息，用户的装备、积分等直接以内嵌文档的形式存储，方便查询、高效率存储和访问。</li>
+<li>3） 物流场景，使用 MongoDB 存储订单信息，订单状态在运送过程中会不断更新，以 MongoDB 内嵌数组的形式来存储，一次查询就能将订单所有的变更读取出来。</li>
+<li>4） 物联网场景，使用 MongoDB 存储所有接入的智能设备信息，以及设备汇报的日志信息，并对这些信息进行多维度的分析。</li>
+<li>5） 视频直播，使用 MongoDB 存储用户信息、点赞互动信息等。</li>
+</ul>
+<p>这些应用场景中，数据操作方面的共同特点是：</p>
+<ul>
+<li>（1） 数据量大</li>
+<li>（2） 写入操作频繁（读写都很频繁）</li>
+<li>（3） 价值较低的数据，对事务性要求不高</li>
+</ul>
+<p>对于这样的数据，我们更适合使用MongoDB来实现数据的存储。</p>
+<p><strong>什么时候选择</strong>*<strong>MongoDB</strong></p>
+<p>在架构选型上，除了上述的三个特点外，如果你还犹豫是否要选择它？可以考虑以下的一些问题： 应用不需要事务及复杂 join 支持</p>
+<p>新应用，需求会变，数据模型无法确定，想快速迭代开发</p>
+<p>应用需要2000-3000以上的读写QPS（更高也可以） 应用需要TB甚至 PB 级别数据存储</p>
+<p>应用发展迅速，需要能快速水平扩展应用要求存储的数据不丢失</p>
+<p>应用需要99.999%高可用</p>
+<p>应用需要大量的地理位置查询、文本查询</p>
+<p>如果上述有1个符合，可以考虑 MongoDB，2个及以上的符合，选择 MongoDB 绝不会后悔。</p>
+<h2 id="MongoDB简介"><a href="#MongoDB简介" class="headerlink" title="MongoDB简介"></a>MongoDB简介</h2><p>MongoDB是一个开源、高性能、无模式的文档型数据库，当初的设计就是用于简化开发和方便扩展，是NoSQL数据库产品中的一种。是最像关系型数据库（MySQL）的非关系型数据库。</p>
+<p>它支持的数据结构非常松散，是一种类似于 JSON 的 格式叫BSON，所以它既可以存储比较复杂的数据类型，又相当的灵活。</p>
+<p>MongoDB中的记录是一个文档，它是一个由字段和值对（ﬁeld:value）组成的数据结构。MongoDB文档类似于JSON对象，即一个文档认为就是一个对象。字段的数据类型是字符型，它的值除了使用基本的一些类型外，还可以包括其他文档、普通数组和文档数组。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/jnylife/ImgHosting/img/202112271433121.jpg" alt="m"></p>
+<h2 id="数据库操作"><a href="#数据库操作" class="headerlink" title="数据库操作"></a>数据库操作</h2><h3 id="选择和创建数据库"><a href="#选择和创建数据库" class="headerlink" title="选择和创建数据库"></a>选择和创建数据库</h3><p>选择和创建数据库的语法格式:</p>
+<figure class="highlight markdown"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">use 数据库名称</span><br></pre></td></tr></tbody></table></figure>
+
+
+
+<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>Mongo是一个基于分布式文件存储的Nosql数据库。</p>
+<p>支持的数据结构非常松散，可以通过json格式来修改插入数据</p>
+<h2 id="基本操作"><a href="#基本操作" class="headerlink" title="基本操作"></a>基本操作</h2><h4 id="启动服务"><a href="#启动服务" class="headerlink" title="启动服务"></a>启动服务</h4><figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#fork 后台运行  若要使用账号密码服务 需要在启动时加 --auth</span></span><br><span class="line">mongod --dbpath /usr/<span class="built_in">local</span>/var/mongodb --logpath /usr/<span class="built_in">local</span>/var/<span class="built_in">log</span>/mongodb/mongo.log --fork</span><br><span class="line"><span class="comment">#不在后端运行，可以在控制台上查看运行过程，使用配置文件启动</span></span><br><span class="line">mongod --config /usr/<span class="built_in">local</span>/etc/mongod.conf</span><br><span class="line"></span><br><span class="line">//关闭方法db.shutdownServer()  之后<span class="built_in">exit</span></span><br><span class="line">需要账号密码的登陆方式：</span><br><span class="line">方法一：</span><br><span class="line">mongo 服务器IP地址：mongo 127.0.0.1/admin -u admin -p 123456</span><br><span class="line">方法二：</span><br><span class="line">mongo进入shell</span><br><span class="line">use admin</span><br><span class="line">db.auth(<span class="string">'admin'</span>,<span class="string">'123456'</span>) 返回1则验证成功</span><br></pre></td></tr></tbody></table></figure>
+
+<h4 id="查看服务信息"><a href="#查看服务信息" class="headerlink" title="查看服务信息"></a>查看服务信息</h4><figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ps aux | grep -v grep | grep mongod</span><br></pre></td></tr></tbody></table></figure>
+
+<h4 id="查看数据库"><a href="#查看数据库" class="headerlink" title="查看数据库"></a>查看数据库</h4><p>show databses</p>
+<h4 id="选择数据库"><a href="#选择数据库" class="headerlink" title="选择数据库"></a>选择数据库</h4><p>use database[数据库名称]   选择不存在的数据库会隐式创建该数据库</p>
+<h4 id="删除数据库"><a href="#删除数据库" class="headerlink" title="删除数据库"></a>删除数据库</h4><p>先选择到要删除的数据库 db.dropDatabase</p>
+<h4 id="查看集合"><a href="#查看集合" class="headerlink" title="查看集合"></a>查看集合</h4><p>show collections</p>
+<h4 id="创建集合"><a href="#创建集合" class="headerlink" title="创建集合"></a>创建集合</h4><p>db.createCollection(‘c1’)</p>
+<h4 id="删除集合"><a href="#删除集合" class="headerlink" title="删除集合"></a>删除集合</h4><p>db.集合名.drop()</p>
+<h4 id="ID的组成："><a href="#ID的组成：" class="headerlink" title="ID的组成："></a>ID的组成：</h4><p>0 1 2 3 4 5 6 7 8 9 10 11</p>
+<p>0-3:时间戳  4-6：机器mac码  7-8:PID 9-11:计数器</p>
+<p>也可以自定义ID，只需要给插入的JSON数据增加_id键即可覆盖（强烈不推荐）</p>
+<h2 id="增删改查"><a href="#增删改查" class="headerlink" title="增删改查"></a>增删改查</h2><h3 id="C增"><a href="#C增" class="headerlink" title="C增"></a>C增</h3><p>db.集合名.insert(JSON数据)</p>
+<p>集合存在，则直接插入数据，集合不存在，隐式创建并插入</p>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">use test2</span><br><span class="line">db.c1.insert({username:<span class="string">"xzy"</span>,age:18})</span><br><span class="line">db.c1.insertMany({})</span><br><span class="line">留心一：数据库和集合不存在时，都隐式创建</span><br><span class="line">留心二：对象的键同意不加引号方便看，但是查看集合数据时系统会自动加上</span><br><span class="line">留心三：mongodn会给每条数据添加一个全球唯一的ID</span><br><span class="line"></span><br><span class="line">插入多条数据：</span><br><span class="line">传递数组，数组中每个元素都是一个JSON类型</span><br><span class="line">db.c1.insert([</span><br><span class="line">  {username:<span class="string">"z3"</span>,age:3},</span><br><span class="line">  {username:<span class="string">"z4"</span>,age:4},</span><br><span class="line">  {username:<span class="string">"z5"</span>,age:5}</span><br><span class="line">])</span><br><span class="line"></span><br><span class="line">插入N条数据：</span><br><span class="line">mongodb底层使用JS引擎实现的，所以支持部分js语法，可以使用<span class="keyword">for</span>循环</span><br><span class="line"><span class="keyword">for</span>(var i=1;i&lt;=10;i++){</span><br><span class="line">  <span class="built_in">print</span>(i)</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">插入十条数据：</span><br><span class="line">  </span><br><span class="line"><span class="keyword">for</span>(var i=1;i&lt;=10;i++){</span><br><span class="line">  db.c1.insert({username:<span class="string">"a"</span>+i,age:i})</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+
+
+<h3 id="R查"><a href="#R查" class="headerlink" title="R查"></a>R查</h3><p>语法： db.集合名.find(条件，[查询的列])</p>
+<p>格式化：db.集合名.find().pretty()</p>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">条件：</span><br><span class="line">	查询所有数据  				{}或者不写</span><br><span class="line">	查询age=6的数据 			 {age:6}</span><br><span class="line">	查询age=6且性别为男   {age:6,sex:<span class="string">'男'</span>}</span><br><span class="line"></span><br><span class="line">查询的列</span><br><span class="line">	不写 - 查询全部的列</span><br><span class="line">	{age:1} 只显示age列，可以显示多个想要的列{user:1,age:1.......} </span><br><span class="line">	{age:0} 除了age列外都显示 可以不显示多个想要的列{user:0,age:0}</span><br><span class="line">	无论怎么写系统自定义_id都会在</span><br></pre></td></tr></tbody></table></figure>
+
+<p>升级语法：</p>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">db.集合名.find(键：值)  注：值不直接写</span><br><span class="line"></span><br><span class="line">							{运算符：值}</span><br><span class="line"></span><br><span class="line">db.集合名.find({</span><br><span class="line"></span><br><span class="line">	键：{运算符：值}</span><br><span class="line"></span><br><span class="line">})</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">例如：</span><br><span class="line">年龄小于5的</span><br><span class="line">db.c1.find({age:{<span class="variable">$lt</span>:5}})</span><br><span class="line"></span><br><span class="line">年龄等于3、4、5的</span><br><span class="line">db.c1.find({age:{<span class="variable">$in</span>:[3,4,5]}})</span><br></pre></td></tr></tbody></table></figure>
+
+<p>运算符表：</p>
+<table>
+<thead>
+<tr>
+<th>运算符</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>$gt</td>
+<td>大于</td>
+</tr>
+<tr>
+<td>$gte</td>
+<td>大于等于</td>
+</tr>
+<tr>
+<td>$lt</td>
+<td>小于</td>
+</tr>
+<tr>
+<td>$lte</td>
+<td>小于等于</td>
+</tr>
+<tr>
+<td>$ne</td>
+<td>不等于</td>
+</tr>
+<tr>
+<td>$in</td>
+<td>in</td>
+</tr>
+<tr>
+<td>$nin</td>
+<td>Not in</td>
+</tr>
+</tbody></table>
+<h3 id="U改"><a href="#U改" class="headerlink" title="U改"></a>U改</h3><p>基础语法： db.集合名.update（条件，新数据[,是否新增，是否修改多条]）</p>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">是否新增：指条件匹配不到数据则插入，<span class="literal">true</span>是插入，<span class="literal">false</span>否不插入默认</span><br><span class="line">是否修改多条：指将匹配成功的数据都修改（<span class="literal">true</span>是，<span class="literal">false</span>否默认）</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span>(var i=1;i&lt;=10;i++){</span><br><span class="line">	db.c3.insert({username:<span class="string">"zs"</span>+i,age:i});</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">db.c3.update({username:<span class="string">"zs1"</span>},{username:<span class="string">"zs2"</span>})<span class="comment">#这样是替换，将符合条件的行直接换成这个</span></span><br></pre></td></tr></tbody></table></figure>
+
+
+
+<p>升级语法：</p>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">db.c3.update（{username:<span class="string">"zs2"</span>}，{<span class="variable">$set</span>:{username:<span class="string">"zs222"</span>}}）	</span><br><span class="line"></span><br><span class="line">给zs10 增加2岁</span><br><span class="line">db.c3.update({username:<span class="string">"zs10"</span>},{<span class="variable">$inc</span>:{age:2}})</span><br><span class="line">给zs10 减少2岁</span><br><span class="line">db.c3.update({username:<span class="string">"zs10"</span>},{<span class="variable">$inc</span>:{age:-2}})</span><br><span class="line"></span><br><span class="line">准备：插入一个数据： db.c4.insert({username:<span class="string">"熊子阳"</span>,age:18,who:<span class="string">"男"</span>,other:<span class="string">"没钱"</span>})</span><br><span class="line"></span><br><span class="line">修改数据，将 熊子阳 改为 Aoi  ，age 改为999 ，who 改为 sex ，other 删除</span><br><span class="line">db.c4.update({username:<span class="string">"熊子阳"</span>},</span><br><span class="line">{<span class="variable">$set</span>:{username:<span class="string">"Aoi"</span>}},</span><br><span class="line">{<span class="variable">$inc</span>:{age:971}},</span><br><span class="line">{<span class="variable">$rename</span>:{who:sex}},</span><br><span class="line">{<span class="variable">$unset</span>:{other:<span class="literal">true</span>}})</span><br><span class="line"></span><br><span class="line">正确写法：</span><br><span class="line">db.c4.update({username:<span class="string">"熊子阳"</span>},{</span><br><span class="line">	<span class="variable">$set</span>:{username:<span class="string">"Aoi"</span>},</span><br><span class="line">	<span class="variable">$inc</span>:{age:971},</span><br><span class="line">	<span class="variable">$rename</span>:{who:<span class="string">"sex"</span>},</span><br><span class="line">	<span class="variable">$unset</span>:{other:<span class="literal">true</span>}</span><br><span class="line">})</span><br><span class="line"></span><br><span class="line"><span class="comment">#更新不存在的值,若不存在则不会有操作</span></span><br><span class="line">&gt; db.c3.update({username:<span class="string">"zs30"</span>},{<span class="variable">$set</span>:{age:30}})</span><br><span class="line"><span class="comment">#在最后加一个true参数，作用是，如果不存在，则插入该条数据,默认为false则不管</span></span><br><span class="line">&gt; db.c3.update({username:<span class="string">"zs30"</span>},{<span class="variable">$set</span>:{age:30}},<span class="literal">true</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#第四个参数如果为true，当匹配到多条条件符合的元素时，都更改，默认为false，只改一条</span></span><br><span class="line">&gt; db.c3.update({},{<span class="variable">$set</span>:{age:20}},<span class="literal">false</span>,<span class="literal">true</span>)</span><br></pre></td></tr></tbody></table></figure>
+
+
+
+<table>
+<thead>
+<tr>
+<th>运算符</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>$inc​</td>
+<td>递增</td>
+</tr>
+<tr>
+<td>$rename</td>
+<td>重命名列</td>
+</tr>
+<tr>
+<td>$set</td>
+<td>修改列值</td>
+</tr>
+<tr>
+<td>$unset</td>
+<td>删除列</td>
+</tr>
+</tbody></table>
+<h3 id="D删"><a href="#D删" class="headerlink" title="D删"></a>D删</h3><p>语法：db.集合名.remove(条件[,是否删除一条])</p>
+<p>是否删除一条 true是，false否 默认</p>
+<figure class="highlight js"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">当存在多条符合条件的行时，只删除一条</span><br><span class="line">db.c3.remove({<span class="attr">username</span>:<span class="string">"zs30"</span>},<span class="literal">true</span>)</span><br><span class="line">存在多条时，全部删除</span><br><span class="line">db.c3.remove({<span class="attr">username</span>:<span class="string">"zs30"</span>},<span class="literal">true</span>)</span><br></pre></td></tr></tbody></table></figure>
+
+
+
+
+
+<h2 id="try-catch"><a href="#try-catch" class="headerlink" title="try catch"></a>try catch</h2><p>当一次性插入或者更新n条数据时，mongodb不会因为一条数据的错误而使得整个操作终止并回滚，只会终止接下来的操作，所以可以使用trycatch来进行异常的捕捉处理。测试的时候可以不处理。</p>
+<p>例如：</p>
+<figure class="highlight json"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">try{</span><br><span class="line">  db.c1.insertMany([</span><br><span class="line">  {<span class="attr">"_id"</span>:<span class="number">1</span>,name:<span class="string">"xzy"</span>},</span><br><span class="line">  {<span class="attr">"_id"</span>:<span class="number">2</span>,name:<span class="string">"lhl"</span>},</span><br><span class="line">	{<span class="attr">"_id"</span>:<span class="number">3</span>,name:<span class="string">"yzh"</span>},</span><br><span class="line">	{<span class="attr">"_id"</span>:<span class="number">4</span>,name:<span class="string">"lwy"</span>}...</span><br><span class="line">}</span><br><span class="line">  ])</span><br><span class="line">}catch(e){</span><br><span class="line">	print</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+
+
+
+
+<h2 id="排序-amp-分页"><a href="#排序-amp-分页" class="headerlink" title="排序&amp;分页"></a>排序&amp;分页</h2><p>准备：</p>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">use <span class="built_in">test</span></span><br><span class="line">db.c2.insert({_id:1,name:<span class="string">"a"</span>,sex:1,age:1})</span><br><span class="line">db.c2.insert({_id:2,name:<span class="string">"b"</span>,sex:2,age:2})</span><br><span class="line">db.c2.insert({_id:3,name:<span class="string">"c"</span>,sex:3,age:3})</span><br><span class="line">db.c2.insert({_id:4,name:<span class="string">"d"</span>,sex:4,age:4})</span><br><span class="line">db.c2.insert({_id:5,name:<span class="string">"e"</span>,sex:5,age:5})</span><br></pre></td></tr></tbody></table></figure>
+
+<h4 id="排序"><a href="#排序" class="headerlink" title="排序"></a>排序</h4><figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">语法：db.集合名.find().sort(JSON数据)</span><br><span class="line">说明：键-就是要排序的列/字段，值：1升序 -1降序</span><br><span class="line">使用：对年龄进行降序排序</span><br><span class="line">db.c2.find().sort({age:-1})</span><br></pre></td></tr></tbody></table></figure>
+
+<h4 id="分页"><a href="#分页" class="headerlink" title="分页"></a>分页</h4><figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">语法：db.集合名.find().skip(数字).<span class="built_in">limit</span>(数字)</span><br><span class="line">说明：skip里的数字指跳过指定数量（可选），<span class="built_in">limit</span>限制查询的数量</span><br><span class="line">db.c2.find().sort({age:-1}).skip(1).<span class="built_in">limit</span>(2)</span><br></pre></td></tr></tbody></table></figure>
+
+
+
+<h2 id="聚合查询"><a href="#聚合查询" class="headerlink" title="聚合查询"></a>聚合查询</h2><p>语法：</p>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><span class="line">db.集合名称.aggregate([</span><br><span class="line">	{管道:{表达式}}</span><br><span class="line">	....</span><br><span class="line">])</span><br><span class="line"></span><br><span class="line">常用管道：</span><br><span class="line"><span class="variable">$group</span>   将集合中的文档分组，用于统计结果</span><br><span class="line"><span class="variable">$match</span>   过滤数据，只要输出符合条件的文档</span><br><span class="line"><span class="variable">$sort</span>		 聚合数据进一步排序</span><br><span class="line"><span class="variable">$skip</span>    跳过指定文档数</span><br><span class="line"><span class="variable">$limit</span>   限制集合数据返回文档数</span><br><span class="line">....</span><br><span class="line"></span><br><span class="line">常用表达式：</span><br><span class="line"><span class="variable">$sum</span> 总和 <span class="variable">$sum</span>:1同count表示统计</span><br><span class="line"><span class="variable">$avg</span> 平均</span><br><span class="line"><span class="variable">$min</span> 最小值</span><br><span class="line"><span class="variable">$max</span> 最大值</span><br><span class="line"></span><br><span class="line">准备：</span><br><span class="line">db.c3.insert({_id:1,name:<span class="string">"a"</span>,sex:1,age:1})</span><br><span class="line">db.c3.insert({_id:2,name:<span class="string">"a"</span>,sex:1,age:2})</span><br><span class="line">db.c3.insert({_id:3,name:<span class="string">"b"</span>,sex:1,age:3})</span><br><span class="line">db.c3.insert({_id:4,name:<span class="string">"c"</span>,sex:2,age:4})</span><br><span class="line">db.c3.insert({_id:5,name:<span class="string">"d"</span>,sex:2,age:5})</span><br><span class="line"></span><br><span class="line">操作：</span><br><span class="line">男女生的总年龄</span><br><span class="line"><span class="comment">#_id 必须加，后跟指定列</span></span><br><span class="line"><span class="comment">#rew 求和 返回结果数</span></span><br><span class="line">db.c3.aggregate([</span><br><span class="line">	{</span><br><span class="line">		<span class="variable">$group</span>:{	</span><br><span class="line">			_id:<span class="string">"<span class="variable">$sex</span>"</span>, 			</span><br><span class="line">			res:{<span class="variable">$sum</span>:<span class="string">"<span class="variable">$sex</span>"</span>}   </span><br><span class="line">	}</span><br><span class="line">	}</span><br><span class="line">])</span><br><span class="line"></span><br><span class="line">求男女总人数</span><br><span class="line">db.c3.aggregate([</span><br><span class="line">	{</span><br><span class="line">		<span class="variable">$group</span>:{	</span><br><span class="line">			_id:<span class="string">"<span class="variable">$sex</span>"</span>, 			</span><br><span class="line">			res:{<span class="variable">$sum</span>:1}   </span><br><span class="line">	}</span><br><span class="line">	}</span><br><span class="line">])</span><br><span class="line"></span><br><span class="line">求学生总数和平均年龄</span><br><span class="line">db.c3.aggregate([</span><br><span class="line">	{</span><br><span class="line">		<span class="variable">$group</span>:{	</span><br><span class="line">			_id:null, 			</span><br><span class="line">			res:{<span class="variable">$sum</span>:1},</span><br><span class="line">      total_avg:{<span class="variable">$avg</span>:<span class="string">"<span class="variable">$age</span>"</span>}</span><br><span class="line">	}</span><br><span class="line">	}</span><br><span class="line">])</span><br><span class="line"></span><br><span class="line">查询男生女生人数，升序排序</span><br><span class="line">db.c3.aggregate([</span><br><span class="line">	{<span class="variable">$group</span>:{	_id:<span class="string">"<span class="variable">$sex</span>"</span>,res:{<span class="variable">$sum</span>:1}}},</span><br><span class="line">	{<span class="variable">$sort</span>:{res:1}}</span><br><span class="line">])</span><br></pre></td></tr></tbody></table></figure>
+
+
+
+<h2 id="优化索引"><a href="#优化索引" class="headerlink" title="优化索引"></a>优化索引</h2><h4 id="基本操作-1"><a href="#基本操作-1" class="headerlink" title="基本操作"></a>基本操作</h4><p>创建索引语法： db.集合名.createIndex(待创建索引的列[,额外选项])</p>
+<p>参数：</p>
+<blockquote>
+<p>待创建索引的列:{键:1,…,键:-1}</p>
+<p>说明：1升序  -1降序 列入{age：1}表示创建age索引并按照升序的方式存储</p>
+<p>额外选项：设置索引的名称或者唯一索引等等</p>
+</blockquote>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#创建只对单个列为条件的索引</span></span><br><span class="line">db.c1.create({name:1})</span><br><span class="line"><span class="comment">#创建一个自己取名的索引</span></span><br><span class="line">db.c1.create({name:1},{name:<span class="string">"xzy"</span>})</span><br><span class="line"><span class="comment">#创建条件为多个列的组合索引</span></span><br><span class="line">db.c1.create({name:1,age:-1},{<span class="string">"hh"</span>})</span><br><span class="line"></span><br><span class="line"><span class="comment">#创建唯一索引</span></span><br><span class="line">db.c1.createIndex({name:1},{unique:<span class="string">"name"</span>})</span><br></pre></td></tr></tbody></table></figure>
+
+
+
+<p>删除索引语法：</p>
+<blockquote>
+<p>全部删除：db.集合名.dropIndexes()</p>
+<p>删除指定：db.集合名.dropIndex(索引名)</p>
+</blockquote>
+<p>查看索引语法：db.集合名.getIndexes()</p>
+<h4 id="分析索引"><a href="#分析索引" class="headerlink" title="分析索引"></a>分析索引</h4><p>语法：db.集合名.find().explain(‘executionStats’)</p>
+<p>说明：</p>
+<p>COLLSCAN 全表扫描</p>
+<p>IXSCAN索引扫描</p>
+<p>FETCH根据索引去检索指定document</p>
+<h2 id="权限机制"><a href="#权限机制" class="headerlink" title="权限机制"></a>权限机制</h2><p><strong>开启验证模式概念：</strong>指用户需要输入账号密码才能登陆使用</p>
+<p>操作步骤：</p>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1、添加超级管理员</span><br><span class="line">2、退出卸载服务</span><br><span class="line">3、重新安装需要输入账号密码的服务（注在原安装命令基础上加上--auth即可）</span><br><span class="line">4、启动服务-〉登陆测试</span><br></pre></td></tr></tbody></table></figure>
+
+<p>步骤一：添加超级管理员</p>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">use admin</span><br><span class="line">db.createUser({</span><br><span class="line">              "user":"admin",</span><br><span class="line">              "pwd":"123456",</span><br><span class="line">             	"roles":[{</span><br><span class="line">                       role:"root",</span><br><span class="line">                       db:"admin"</span><br><span class="line">                       }]</span><br><span class="line">              })</span><br><span class="line">              </span><br><span class="line">查看管理员</span><br><span class="line">use admin</span><br><span class="line"><span class="keyword">show</span> collections</span><br><span class="line">db.system.users.find().pretty()</span><br></pre></td></tr></tbody></table></figure>
+
+<p>步骤二：退出卸载服务</p>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">//关闭方法db.shutdownServer()  </span><br><span class="line">之后<span class="built_in">exit</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>步骤三：安装需要验证的MongoDB服务</p>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#使用--auth参数来开启认证服务</span></span><br><span class="line">mongod --dbpath /usr/<span class="built_in">local</span>/var/mongodb --logpath /usr/<span class="built_in">local</span>/var/<span class="built_in">log</span>/mongodb/mongo.log --auth --fork</span><br><span class="line"></span><br><span class="line"><span class="comment">#或在config文件中添加上</span></span><br><span class="line">security:</span><br><span class="line">	<span class="comment">#开启授权认证后再用配置文件来启动即可</span></span><br><span class="line">	authorization:enabled</span><br><span class="line"></span><br><span class="line">需要账号密码的登陆方式：</span><br><span class="line">方法一：</span><br><span class="line">mongo 服务器IP地址：mongo 127.0.0.1/admin -u admin -p 123456</span><br><span class="line">方法二：</span><br><span class="line">mongo进入shell</span><br><span class="line">use admin</span><br><span class="line">db.auth(<span class="string">'admin'</span>,<span class="string">'123456'</span>) 返回1则验证成功</span><br></pre></td></tr></tbody></table></figure>
+
+<p>例子：</p>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(var i = 1;i&lt;=10;i++){</span><br><span class="line">db.goods.insert({<span class="string">"name"</span>:<span class="string">"goodsName"</span>+i,<span class="string">"price"</span>:i})</span><br><span class="line">}</span><br><span class="line">添加用户shop1可以读shop数据库</span><br><span class="line">db.createUser({</span><br><span class="line">              <span class="string">"user"</span>:<span class="string">"shop1"</span>,</span><br><span class="line">              <span class="string">"pwd"</span>:<span class="string">"123456"</span>,</span><br><span class="line">             	<span class="string">"roles"</span>:[{</span><br><span class="line">                       role:<span class="string">"read"</span>,</span><br><span class="line">                       db:<span class="string">"shop"</span></span><br><span class="line">                       }]</span><br><span class="line">              })</span><br><span class="line">添加用户shop2可以读写shop数据库</span><br><span class="line">db.createUser({</span><br><span class="line">              <span class="string">"user"</span>:<span class="string">"shop2"</span>,</span><br><span class="line">              <span class="string">"pwd"</span>:<span class="string">"123456"</span>,</span><br><span class="line">             	<span class="string">"roles"</span>:[{</span><br><span class="line">                       role:<span class="string">"readWrite"</span>,</span><br><span class="line">                       db:<span class="string">"shop"</span></span><br><span class="line">                       }]</span><br><span class="line">              })</span><br></pre></td></tr></tbody></table></figure>
+
+
+
+<h2 id="备份还原"><a href="#备份还原" class="headerlink" title="备份还原"></a>备份还原</h2><p>语法：</p>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">在终端中执行，该命令不是mongo命令</span><br><span class="line">导出：mongodump -h -port -u -p -d -o</span><br><span class="line">导出语法说明</span><br><span class="line">-h host 服务器IP地址（一般不写 默认本机）</span><br><span class="line">-port port 端口（不写默认27017）</span><br><span class="line">-u user 用户</span><br><span class="line">-p <span class="built_in">pwd</span> 密码</span><br><span class="line">-d database 数据库（不写默认导出全部）</span><br><span class="line">-o open 备份到指定目录下</span><br><span class="line"></span><br><span class="line">mongodump -u admin -p 123456 -o /Users/didi/xzy文件/mongo</span><br><span class="line"><span class="comment">#注意 最新的mongodb版本4.4中，是没有mongodump工具的，需要通过使用brew命令单独下载</span></span><br><span class="line"><span class="comment">#brew install mongodb-database-tools</span></span><br><span class="line"></span><br><span class="line">单独备份一个指定数据库：</span><br><span class="line">mongodump -u shop2 -p 123456 -d shop -o /Users/didi/xzy文件/mongo</span><br><span class="line"><span class="comment">#此时好像不能使用admin作为用户来备份，可能是因为这个不是创建在shop中的用户？</span></span><br></pre></td></tr></tbody></table></figure>
+
+
+
+<h2 id="Mongoose"><a href="#Mongoose" class="headerlink" title="Mongoose"></a>Mongoose</h2><p>官方：<a target="_blank" rel="noopener" href="http://mongoosejs.com/">http://mongoosejs.com</a></p>
+<p>中文：<a target="_blank" rel="noopener" href="http://mongosejs.net/">http://mongosejs.net/</a></p>
+<p>是node中提供操作MongoDB的模块</p>
+<p>能过通过Node语法实现MongoDB数据库CURD</p>
+<p>从而实现使用node写程序</p>
+<p>下载：</p>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">npm i mongoose</span><br><span class="line">或者</span><br><span class="line">yarn add mongoose</span><br></pre></td></tr></tbody></table></figure>
+
+
+
+
+
+<h2 id="Java使用"><a href="#Java使用" class="headerlink" title="Java使用"></a>Java使用</h2><h3 id="添加依赖"><a href="#添加依赖" class="headerlink" title="添加依赖"></a>添加依赖</h3><figure class="highlight xml"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-test<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">scope</span>&gt;</span>test<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-data-mongodb<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="配置属性文件（appliction-yml）"><a href="#配置属性文件（appliction-yml）" class="headerlink" title="配置属性文件（appliction.yml）"></a>配置属性文件（appliction.yml）</h3><figure class="highlight yml"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">spiring:</span></span><br><span class="line">	<span class="comment">#数据源配置</span></span><br><span class="line">	<span class="attr">data:</span></span><br><span class="line">		<span class="attr">mongodb:</span></span><br><span class="line">			<span class="comment">#主机地址</span></span><br><span class="line">			<span class="attr">host:</span> <span class="string">locahost</span></span><br><span class="line">			<span class="comment">#数据库</span></span><br><span class="line">			<span class="attr">database:</span> <span class="string">test</span></span><br><span class="line">			<span class="comment">#默认端口时27017</span></span><br><span class="line">			<span class="attr">port:</span>	<span class="number">27017</span></span><br><span class="line">			<span class="comment">#也可以使用url连接</span></span><br><span class="line">			<span class="comment">#url:mongodb://localhost:27017/test</span></span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="添加数据"><a href="#添加数据" class="headerlink" title="添加数据"></a>添加数据</h3><figure class="highlight json"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">db.comment.insert({</span><br><span class="line">  _id:'<span class="number">1</span>',</span><br><span class="line">  content:<span class="string">"我们不应该吧清晨浪费在手机上，哈哈"</span>,</span><br><span class="line">  pulishtime :<span class="literal">null</span>,</span><br><span class="line">  userid:'<span class="number">1002</span>',</span><br><span class="line">  nickname:<span class="string">"Aoi"</span></span><br><span class="line">})</span><br></pre></td></tr></tbody></table></figure>
+
+
+
+<h3 id="创建分页"><a href="#创建分页" class="headerlink" title="创建分页"></a>创建分页</h3><p>在CommentReposity中添加方法</p>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">CommentRepository</span> <span class="keyword">extends</span> <span class="title">MongoRepository</span>&lt;<span class="title">Comment</span>,<span class="title">String</span>&gt;</span>{</span><br><span class="line">  <span class="comment">//方法名根据已有字段来设置，Mongo会提示，拼写错误则无法使用</span></span><br><span class="line">  <span class="comment">//第一个参数是查询条件，第二个是分页</span></span><br><span class="line">  <span class="function">Page&lt;Comment&gt; <span class="title">findByParentid</span><span class="params">(String parentid,Pageable pageable)</span></span>;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<p>在Service中添加该方法</p>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> Page&lt;Comment&gt; <span class="title">findCommentListByParentid</span><span class="params">(String parentid,<span class="keyword">int</span> page,<span class="keyword">int</span> size)</span></span>{</span><br><span class="line">  <span class="comment">//之所以-1是因为索引从0开始  </span></span><br><span class="line">  <span class="keyword">return</span> commentRepository.findByParentid(parentid, PageRequest.of(page-<span class="number">1</span>,size));</span><br><span class="line">    }</span><br></pre></td></tr></tbody></table></figure>
+
+
+
+<h3 id="实现点赞"><a href="#实现点赞" class="headerlink" title="实现点赞"></a>实现点赞</h3><p>在Service中新增updateThumbup方法</p>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">点赞-效率低</span></span><br><span class="line"><span class="comment">@param id</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">updateCommentThumbupToIncrementingOld</span><span class="params">(String id)</span></span>{</span><br><span class="line">  Comment comment = commentRepository.findById(id).get();</span><br><span class="line">  comment.setLikenum(comment.getLikenum()+<span class="number">1</span>);</span><br><span class="line">  CommentRepository.save(comment);</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+
+
+<p>以上方法效率不高，只需要将点赞数+1就可以，没必要查出所有字段以后再更新所有字段。</p>
+<p>可以使用MongoTemplate类来实现对某列的操作</p>
+<p>（1）修改CommentService</p>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//注入MongoTemplate</span></span><br><span class="line"><span class="meta">@Autowired</span></span><br><span class="line"><span class="keyword">private</span> MongoTemplate mongoTemplate;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">updateCommentLikenum</span><span class="params">(String id)</span></span>{</span><br><span class="line">  <span class="comment">//查询对象</span></span><br><span class="line">  Query query = Query.query(Criteria.where(<span class="string">"_id"</span>),is(id));</span><br><span class="line">  <span class="comment">//更新对象</span></span><br><span class="line">  Update update = <span class="keyword">new</span> Update();</span><br><span class="line">	<span class="comment">//局部更新，相当于$set</span></span><br><span class="line">  <span class="comment">//update.set(key,value)</span></span><br><span class="line">  <span class="comment">//递增$inc</span></span><br><span class="line">  <span class="comment">// update.inc("likenum",1)</span></span><br><span class="line">  update.inc(<span class="string">"likenum"</span>);</span><br><span class="line">  </span><br><span class="line">  <span class="comment">//参数1:查询对象</span></span><br><span class="line">  <span class="comment">//参数2:更新对象</span></span><br><span class="line">  <span class="comment">//参数3:集合的名字或实体类的类型Comment.class</span></span><br><span class="line">  mongoTemplate.updateFirst(query,update,<span class="string">"comment"</span>);</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+
+
+<h1 id="MongoDB集群和安全"><a href="#MongoDB集群和安全" class="headerlink" title="MongoDB集群和安全"></a>MongoDB集群和安全</h1><h2 id="副本集"><a href="#副本集" class="headerlink" title="副本集"></a>副本集</h2><p>是一组维护相同数据集的Mongod服务，副本集可以提供冗余和高可用性，是所有生产部署的基础。</p>
+<p>同时也是类似于有自动故障恢复功能的主从集群。用多台机器进行同一数据的异步和同步，从而使得多台机器拥有同一数据的多个副本。并且当主库宕机时不需要用户敢于的情况下自动切换其他备份服务器做主库。还可以利用副本服务器做只读服务器，实现读写分离，提高负载。</p>
+<p>（1）冗余和数据可用性</p>
+<p>复制提供冗余并提高数据可用性。通过在不同数据库服务器上提供多个数据副本，复制可提高一定级别的容错功能，以防止丢失单个数据库服务器。</p>
+<p>某些情况下，复制可以提供增加的读取性能，因为客户端可以将读取操作发送到不同的服务上，在不同数据中心维护数据副本可以增加分布式应用程序的数据位置和可以性。还可以用于维护其他副本，灾难恢复，报告或者备份。</p>
+<p>（2）复制</p>
+<p>副本集时一组维护相同数据集的mongod实例。包含多个数据承载节点和可选的一个仲裁节点。在承载数据的节点中，一个且仅有一个成为被视为主节点，其他节点被视为次要节点。</p>
+<p>主节点接收所有写操作，副本集只有一个主要能够确认具有{w:”most”}写入关注的写日；虽然某些情况下，另一个mongod实例可能暂时认为自己也是主要的。主要记录其操作日志中的数据集的所有更改，即oplog。</p>
+<p>（3）主从复制和副本集区别</p>
+<p>主从集群和副本集最大区别就是副本集没有固定的”主节点”；整个集群会选出一个”主节点”，当其挂掉后，又在剩下的从节点中选中其他节点为”主节点”，副本集总有一个活跃点{主、primary}和一个或多个备份节点{从、secondary}.</p>
+<p>副本集的三个角色</p>
+<p>副本集有两种数据类型三个角色</p>
+<p>两种类型：</p>
+<ul>
+<li>主节点（primary）类型：数据操作的主要连接点，可读写。</li>
+<li>次要（辅助、从）节点类型：数据冗余备份节点，可以读或选举。</li>
+</ul>
+<p>三种角色：</p>
+<p>主要成员（primary）：主要接收所有写操作。就是主节点。</p>
+<p>副本成员（Replicate）：从主节点通过复制操作以维护相同的数据集，即数据备份，不可写操作，但可以读操作（但需要配置）。是默认的一种从节点类型。</p>
+<p>仲裁者（Arbiter）：不保留任何数据的副本，只具有投票选举作用。当然也可以将仲裁服务器维护为副本集的一部分，即副本成员同时也可以是仲裁者。也是一种从节点类型。</p>
+<h2 id="搭建副本集"><a href="#搭建副本集" class="headerlink" title="搭建副本集"></a>搭建副本集</h2><p>一主一从一仲裁。</p>
+<h3 id="主节点"><a href="#主节点" class="headerlink" title="主节点"></a>主节点</h3><p>建立存放数据和日志的目录</p>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#---------myrs</span></span><br><span class="line"><span class="comment">#主节点</span></span><br><span class="line">mkdir -p /Users/didi/xzy/replica_sets/myrs_27017/<span class="built_in">log</span></span><br><span class="line">mkdir -p /Users/didi/xzy/replica_sets/myrs_27017/data/db</span><br></pre></td></tr></tbody></table></figure>
+
+<p>新建或修改配置文件：</p>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim /Users/didi/xzy/replica_sets/myrs_27017/mongod.conf</span><br></pre></td></tr></tbody></table></figure>
+
+<p>myrs_27017:</p>
+<figure class="highlight yaml"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">systemLog:</span></span><br><span class="line">  <span class="comment">#MongoDB发送所有日志输出的目标指定为文件</span></span><br><span class="line">  <span class="attr">destination:</span> <span class="string">file</span></span><br><span class="line">  <span class="comment">#mongod或mongos应向其发送所有诊断日志记录信息的日志文件的路径</span></span><br><span class="line">  <span class="attr">path:</span> <span class="string">"/Users/didi/xzy/replica_sets/myrs_27017/log/mongod.log"</span></span><br><span class="line">  <span class="comment">#当mongos或mongod实例重新启动时，mongos或mongod会将新条目附加到现有日志文件的末尾。</span></span><br><span class="line">  <span class="attr">logAppend:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">storage:</span></span><br><span class="line">  <span class="comment">#mongod实例存储其数据的目录，storage.dbPath设置仅适用于mongod。</span></span><br><span class="line">  <span class="attr">dbPath:</span> <span class="string">"/Users/didi/xzy/replica_sets/myrs_27017/data/db"</span></span><br><span class="line">  <span class="attr">journal:</span></span><br><span class="line">    <span class="comment">#启用或禁用持久性日志以确保数据文件保持有效和可恢复。</span></span><br><span class="line">    <span class="attr">enabled:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">processManagement:</span></span><br><span class="line">  <span class="comment">#启用在后台运行mongos或mongod进程的守护进程模式</span></span><br><span class="line">  <span class="attr">fork:</span> <span class="literal">true</span></span><br><span class="line">  <span class="comment">#指定用于保存mongos或mongod进程的进程ID的文件位置，其中mongos或mongod将写入其PID</span></span><br><span class="line">  <span class="attr">pidFilePath:</span> <span class="string">"/Users/didi/xzy/replica_sets/myrs_27017/log/mongod.pid"</span></span><br><span class="line"><span class="attr">net:</span></span><br><span class="line">  <span class="comment">#服务实例绑定所有IP，有副作用，副本集初始化的时候，节点名字会自动设置为本地域名，而不是ip</span></span><br><span class="line">  <span class="comment">#bindIpAll:true</span></span><br><span class="line">  <span class="comment">#服务实例绑定的IP</span></span><br><span class="line">  <span class="attr">bindIp:</span> <span class="string">localhost</span></span><br><span class="line">  <span class="comment">#bindIp</span></span><br><span class="line">  <span class="comment">#绑定的端口</span></span><br><span class="line">  <span class="attr">port:</span> <span class="number">27017</span></span><br><span class="line"><span class="attr">replication:</span></span><br><span class="line">  <span class="comment">#副本集的名称</span></span><br><span class="line">  <span class="attr">replSetName:</span> <span class="string">myrs</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>启动节点服务：</p>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mongod -f /Users/didi/xzy/replica_sets/myrs_27017/mongod.conf</span><br><span class="line"></span><br><span class="line">mongod --dbpath /Users/didi/xzy/replica_sets/myrs_27017/data/db --logpath /Users/didi/xzy/replica_sets/myrs_27017/<span class="built_in">log</span>/mongod.log --fork</span><br></pre></td></tr></tbody></table></figure>
+
+
+
+<h3 id="从节点"><a href="#从节点" class="headerlink" title="从节点"></a>从节点</h3><p>建立存放数据和日志的目录</p>
+<figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">---------myrs</span></span><br><span class="line"><span class="meta">#</span><span class="bash">从节点</span></span><br><span class="line">mkdir -p /Users/didi/xzy/replica_sets/myrs_27018/log</span><br><span class="line">mkdir -p /Users/didi/xzy/replica_sets/myrs_27018/data/db</span><br></pre></td></tr></tbody></table></figure>
+
+<p>新建或修改配置文件：</p>
+<figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim /Users/didi/xzy/replica_sets/myrs_27018/mongod.conf</span><br></pre></td></tr></tbody></table></figure>
+
+<p>myrs_27018:</p>
+<figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">systemLog:</span><br><span class="line"><span class="meta">  #</span><span class="bash">MongoDB发送所有日志输出的目标指定为文件</span></span><br><span class="line">  destination: file</span><br><span class="line"><span class="meta">  #</span><span class="bash">mongod或mongos应向其发送所有诊断日志记录信息的日志文件的路径</span></span><br><span class="line">  path: "/Users/didi/xzy/replica_sets/myrs_27018/log/mongod.log"</span><br><span class="line"><span class="meta">  #</span><span class="bash">当mongos或mongod实例重新启动时，mongos或mongod会将新条目附加到现有日志文件的末尾。</span></span><br><span class="line">  logAppend: true</span><br><span class="line">storage:</span><br><span class="line"><span class="meta">  #</span><span class="bash">mongod实例存储其数据的目录，storage.dbPath设置仅适用于mongod。</span></span><br><span class="line">  dbPath: "/Users/didi/xzy/replica_sets/myrs_27018/data/db"</span><br><span class="line">  journal:</span><br><span class="line">    #启用或禁用持久性日志以确保数据文件保持有效和可恢复。</span><br><span class="line">    enabled: true</span><br><span class="line">processManagement:</span><br><span class="line"><span class="meta">  #</span><span class="bash">启用在后台运行mongos或mongod进程的守护进程模式</span></span><br><span class="line">  fork: true</span><br><span class="line"><span class="meta">  #</span><span class="bash">指定用于保存mongos或mongod进程的进程ID的文件位置，其中mongos或mongod将写入其PID</span></span><br><span class="line">  pidFilePath: "/Users/didi/xzy/replica_sets/myrs_27018/log/mongod.pid"</span><br><span class="line">net:</span><br><span class="line"><span class="meta">  #</span><span class="bash">服务实例绑定所有IP，有副作用，副本集初始化的时候，节点名字会自动设置为本地域名，而不是ip</span></span><br><span class="line"><span class="meta">  #</span><span class="bash">bindIpAll:<span class="literal">true</span></span></span><br><span class="line"><span class="meta">  #</span><span class="bash">服务实例绑定的IP</span></span><br><span class="line">  bindIp: localhost</span><br><span class="line"><span class="meta">  #</span><span class="bash">bindIp</span></span><br><span class="line"><span class="meta">  #</span><span class="bash">绑定的端口</span></span><br><span class="line">  port: 27018</span><br><span class="line">replication:</span><br><span class="line"><span class="meta">  #</span><span class="bash">副本集的名称</span></span><br><span class="line">  replSetName: myrs</span><br></pre></td></tr></tbody></table></figure>
+
+<p>启动服务</p>
+<figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mongod -f /Users/didi/xzy/replica_sets/myrs_27018/mongod.conf</span><br><span class="line"></span><br><span class="line">mongod --dbpath /Users/didi/xzy/replica_sets/myrs_27018/data/db --logpath /Users/didi/xzy/replica_sets/myrs_27018/log/mongod.log --fork</span><br></pre></td></tr></tbody></table></figure>
+
+
+
+<h3 id="仲裁节点"><a href="#仲裁节点" class="headerlink" title="仲裁节点"></a>仲裁节点</h3><p>建立存放数据和日志的目录</p>
+<figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">---------myrs</span></span><br><span class="line"><span class="meta">#</span><span class="bash">从节点</span></span><br><span class="line">mkdir -p /Users/didi/xzy/replica_sets/myrs_27019/log</span><br><span class="line">mkdir -p /Users/didi/xzy/replica_sets/myrs_27019/data/db</span><br></pre></td></tr></tbody></table></figure>
+
+<p>新建或修改配置文件：</p>
+<figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim /Users/didi/xzy/replica_sets/myrs_27019/mongod.conf</span><br></pre></td></tr></tbody></table></figure>
+
+<p>myrs_27019:</p>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">systemLog:</span><br><span class="line">  <span class="comment">#MongoDB发送所有日志输出的目标指定为文件</span></span><br><span class="line">  destination: file</span><br><span class="line">  <span class="comment">#mongod或mongos应向其发送所有诊断日志记录信息的日志文件的路径</span></span><br><span class="line">  path: <span class="string">"/Users/didi/xzy/replica_sets/myrs_27019/log/mongod.log"</span></span><br><span class="line">  <span class="comment">#当mongos或mongod实例重新启动时，mongos或mongod会将新条目附加到现有日志文件的末尾。</span></span><br><span class="line">  logAppend: <span class="literal">true</span></span><br><span class="line">storage:</span><br><span class="line">  <span class="comment">#mongod实例存储其数据的目录，storage.dbPath设置仅适用于mongod。</span></span><br><span class="line">  dbPath: <span class="string">"/Users/didi/xzy/replica_sets/myrs_27019/data/db"</span></span><br><span class="line">  journal:</span><br><span class="line">    <span class="comment">#启用或禁用持久性日志以确保数据文件保持有效和可恢复。</span></span><br><span class="line">    enabled: <span class="literal">true</span></span><br><span class="line">processManagement:</span><br><span class="line">  <span class="comment">#启用在后台运行mongos或mongod进程的守护进程模式</span></span><br><span class="line">  fork: <span class="literal">true</span></span><br><span class="line">  <span class="comment">#指定用于保存mongos或mongod进程的进程ID的文件位置，其中mongos或mongod将写入其PID</span></span><br><span class="line">  pidFilePath: <span class="string">"/Users/didi/xzy/replica_sets/myrs_27019/log/mongod.pid"</span></span><br><span class="line">net:</span><br><span class="line">  <span class="comment">#服务实例绑定所有IP，有副作用，副本集初始化的时候，节点名字会自动设置为本地域名，而不是ip</span></span><br><span class="line">  <span class="comment">#bindIpAll:true</span></span><br><span class="line">  <span class="comment">#服务实例绑定的IP</span></span><br><span class="line">  bindIp: localhost</span><br><span class="line">  <span class="comment">#bindIp</span></span><br><span class="line">  <span class="comment">#绑定的端口</span></span><br><span class="line">  port: 27019</span><br><span class="line">replication:</span><br><span class="line">  <span class="comment">#副本集的名称</span></span><br><span class="line">  replSetName: myrs</span><br></pre></td></tr></tbody></table></figure>
+
+<p>启动服务</p>
+<figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mongod -f /Users/didi/xzy/replica_sets/myrs_27019/mongod.conf</span><br><span class="line"></span><br><span class="line">mongod --dbpath /Users/didi/xzy/replica_sets/myrs_27019/data/db --logpath /Users/didi/xzy/replica_sets/myrs_27019/log/mongod.log --fork</span><br></pre></td></tr></tbody></table></figure>
+
+
+
+<h2 id="连接节点"><a href="#连接节点" class="headerlink" title="连接节点"></a>连接节点</h2><p>使用客户端命令连接任意一个节点，但这里尽量要连接主节点（27017节点）使之成为主节点：</p>
+<figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mongo --host=localhost --port=27017</span><br></pre></td></tr></tbody></table></figure>
+
+<p>连入后必须初始化副本才行</p>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rs.initiate()  <span class="comment">#可加参数configuration</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>初始化之后按一下回车从secondary变为primary</p>
+<p>之后可以使用</p>
+<p>rs.conf()和rs.status()来查看相应的信息</p>
+<h3 id="添加副本从节点"><a href="#添加副本从节点" class="headerlink" title="添加副本从节点"></a>添加副本从节点</h3><p>在主节点添加从节点，将其他成员加入到副本集中</p>
+<p>语法：</p>
+<figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rs.add(host,arbiterOnly)</span><br></pre></td></tr></tbody></table></figure>
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>host</td>
+<td>string or document</td>
+<td>要添加到副本集的新成员。指定为字符串或配置文档：1）如果是一个字符串，则需要指定新成员的主机名和可选的端口号；2）如果是一个文档，请指定在members数组中找到的副本集成员配置文档。您必须在成员配置文档中指定主机字段。有关文档配置字段的说明，详见下方文档：”主机成员的配置文档”</td>
+</tr>
+<tr>
+<td>arbiterOnly</td>
+<td>boolean</td>
+<td>可选的。仅在<host>值为字符串时适用。如果为true，则添加的主机是仲裁者。</host></td>
+</tr>
+</tbody></table>
+<p>主机成员的配置文档：</p>
+<figure class="highlight json"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">{</span><br><span class="line">  _id:&lt;int&gt;,</span><br><span class="line">  host:&lt;string&gt;,</span><br><span class="line">  arbiterOnly:&lt;boolean&gt;,</span><br><span class="line">  buildIndexes:&lt;boolean&gt;,</span><br><span class="line">  hidden:&lt;boolean&gt;,</span><br><span class="line">  priority:&lt;number&gt;,</span><br><span class="line">  tags:&lt;document&gt;,</span><br><span class="line">  slaveDelay:&lt;int&gt;,</span><br><span class="line">  votes:&lt;number&gt;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<p>示例：</p>
+<p>将27018的副本节点加添加到副本集汇总：</p>
+<figure class="highlight json"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rs.add(<span class="string">"localhost:27018"</span>)</span><br></pre></td></tr></tbody></table></figure>
+
+
+
+<h3 id="添加仲裁者节点"><a href="#添加仲裁者节点" class="headerlink" title="添加仲裁者节点"></a>添加仲裁者节点</h3><figure class="highlight json"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">rs.add(host,arbiterOnly)</span><br><span class="line">或</span><br><span class="line">rs.addArb(host)</span><br><span class="line"></span><br><span class="line">例子：</span><br><span class="line">rs.addArb(<span class="string">"localhost:27019"</span>)</span><br></pre></td></tr></tbody></table></figure>
+
+
+
+<h2 id="副本集读写操作"><a href="#副本集读写操作" class="headerlink" title="副本集读写操作"></a>副本集读写操作</h2><p>登陆主节点27017，写入和读取数据：</p>
+<figure class="highlight json"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">mongo --host localhost --port <span class="number">27017</span></span><br><span class="line">use test</span><br><span class="line">db.comment.insert({<span class="attr">"articleid"</span>:<span class="string">"100000"</span>,<span class="attr">"content"</span>:<span class="string">"今天天气真好，阳光明媚"</span>,<span class="attr">"userid"</span>:<span class="string">"1001"</span>,<span class="attr">"nickname"</span>:<span class="string">"Aoi"</span>,<span class="attr">"createdatetime"</span>:new Date()})</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+
+
+
+<p>登陆从节点：</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">mongo --host localhost --port 27018</span><br><span class="line">#此时进入时会发现无法读取任何数据，要先将当前节点变为从节点</span><br><span class="line">rs.slaveOk()</span><br><span class="line">或</span><br><span class="line">rs.slaveOk(true)</span><br><span class="line"></span><br><span class="line">若要取消从节点</span><br><span class="line">rs.slaveOk(false)</span><br></pre></td></tr></tbody></table></figure>
+
+
+
+<p>仲裁者节点</p>
+<p>该节点不存放任何数据信息，只用于查看配置信息</p>
+<h2 id="主节点的选举原则"><a href="#主节点的选举原则" class="headerlink" title="主节点的选举原则"></a>主节点的选举原则</h2><p>MongoDB在副本集中，会自动进行主节点的选举，主节点选举的触发条件：</p>
+<ol>
+<li>主节点故障</li>
+<li>主节点网络不可达（默认心跳信息为10秒）</li>
+<li>人工干预（rs.stepDown(600))</li>
+</ol>
+<p>一旦触发选举，就要根据一定的规则来选主节点</p>
+<p>选举规则是根据票数来决定谁获胜：</p>
+<ul>
+<li>票数最高，且获得了”大多数”成员的投票支持的节点获胜</li>
+</ul>
+<p>“大多数”的定义为：假设复制集内投票成员数量为N，则大多数为N/2+1。例如：3个投票成员，则大多数的值是2.当复制集内存活的数量不足大多数时，整个复制集将无法选举出Primary，复制集将无法提供写服务，处于只读状态。</p>
+<ul>
+<li>若票数相同，且都获得了”大多数”成员的投票支持的，数据新的节点获胜。</li>
+</ul>
+<p>数据的新旧是通过操作日志oplog来对比的。</p>
+<h2 id="SpringDataMongoDB连接副本集"><a href="#SpringDataMongoDB连接副本集" class="headerlink" title="SpringDataMongoDB连接副本集"></a>SpringDataMongoDB连接副本集</h2><p>语法：</p>
+<figure class="highlight xml"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mongodb://host1,host2,host3/?connect=replicaSet&amp;slaveOk=true&amp;replicaSet=副本集名字</span><br></pre></td></tr></tbody></table></figure>
+
+<p>其中：</p>
+<ul>
+<li>slaveOk=true：开启副本节点读的功能，可实现读写分离。</li>
+<li>connect=replicaSet：自动到副本集中选择读写的主机。如果slaveOk是打开的，则实现读写分离。</li>
+</ul>
+<p>示例：</p>
+<p>连接replica set三台服务器（端口27017，27018，27019），直接连接第一个服务器，无论是replica set一部分或者主服务器或者从服务器，写入操作应用在主服务器并且分布查询到从服务器。</p>
+<figure class="highlight yaml"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">spring:</span> </span><br><span class="line">	<span class="comment">#数据源配置</span></span><br><span class="line">	<span class="attr">data:</span></span><br><span class="line">		<span class="attr">mongodb:</span> </span><br><span class="line">			<span class="comment">#主机地址</span></span><br><span class="line">			<span class="comment">#host: localhost</span></span><br><span class="line">			<span class="comment">#数据库</span></span><br><span class="line">			<span class="comment">#database: test</span></span><br><span class="line">			<span class="comment">#默认端口号是27017</span></span><br><span class="line">			<span class="comment">#port: 27017</span></span><br><span class="line">			<span class="comment">#也可以使用uri连接</span></span><br><span class="line">			<span class="attr">uri:</span> <span class="string">mongodb://localhost:27017,localhost:27018,localhost:27019/test?connect=replicaSet&amp;slaveOk=true&amp;replicaSet=myrs</span></span><br></pre></td></tr></tbody></table></figure>
+
+
+
+<h2 id="分片集群"><a href="#分片集群" class="headerlink" title="分片集群"></a>分片集群</h2><p>分片是一种跨多台机器分布数据的方法，MongoDB使用分片来支持具有非常大的数据集和高吞吐量操作的部署。</p>
+<p>换句话说：分片就是将数据拆分，将其分散到不同的机器上的过程。</p>
+<img src="Users/didi/Documents/MongoDB.assets/image-20201201135548498.png" alt="image-20201201135548498" style="zoom:50%;">
+
+<h3 id="分片包含的组件"><a href="#分片包含的组件" class="headerlink" title="分片包含的组件"></a>分片包含的组件</h3><ul>
+<li>分片（存储）：每个分片包含分片数据的子集。每个分片都可以部署为副本集。</li>
+<li>mongos（路由）：mongos充当查询路由器，在客户端应用程序和分片集群之间提供接口。</li>
+<li>config servers（”调度”的配置）：配置服务器存储群集的元数据和配置设置。</li>
+</ul>
+<h3 id="第一套副本集"><a href="#第一套副本集" class="headerlink" title="第一套副本集"></a>第一套副本集</h3><p>准备存放数据和日志的目录</p>
+<figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">--------------------myshardrs01</span></span><br><span class="line">mkdir -p /Users/didi/xzy/sharded_cluster/myshardrs01_27018/log</span><br><span class="line">mkdir -p /Users/didi/xzy/sharded_cluster/myshardrs01_27018/data/db</span><br><span class="line"></span><br><span class="line">mkdir -p /Users/didi/xzy/sharded_cluster/myshardrs01_27118/log</span><br><span class="line">mkdir -p /Users/didi/xzy/sharded_cluster/myshardrs01_27118/data/db</span><br><span class="line"></span><br><span class="line">mkdir -p /Users/didi/xzy/sharded_cluster/myshardrs01_27218/log</span><br><span class="line">mkdir -p /Users/didi/xzy/sharded_cluster/myshardrs01_27318/data/db</span><br></pre></td></tr></tbody></table></figure>
+
+
+
+<p>新建或修改配置文件</p>
+<figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim /Users/didi/xzy/sharded_cluster/myshardrs01_27018/mongod.conf</span><br></pre></td></tr></tbody></table></figure>
+
+<p>Myshardrs01_27018</p>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">systemLog:</span><br><span class="line">  <span class="comment">#MongoDB发送所有日志输出的目标指定为文件</span></span><br><span class="line">  destination: file</span><br><span class="line">  <span class="comment">#mongod或mongos应向其发送所有诊断日志记录信息的日志文件的路径</span></span><br><span class="line">  path: <span class="string">"/Users/didi/xzy/sharded_cluster/myshardrs01_27018/log/mongod.log"</span></span><br><span class="line">  <span class="comment">#当mongos或mongod实例重新启动时，mongos或mongod会将新条目附加到现有日志文件的末尾。</span></span><br><span class="line">  logAppend: <span class="literal">true</span></span><br><span class="line">storage:</span><br><span class="line">  <span class="comment">#mongod实例存储其数据的目录，storage.dbPath设置仅适用于mongod。</span></span><br><span class="line">  dbPath: <span class="string">"/Users/didi/xzy/sharded_cluster/myshardrs01_27018/data/db"</span></span><br><span class="line">  journal:</span><br><span class="line">    <span class="comment">#启用或禁用持久性日志以确保数据文件保持有效和可恢复。</span></span><br><span class="line">    enabled: <span class="literal">true</span></span><br><span class="line">processManagement:</span><br><span class="line">  <span class="comment">#启用在后台运行mongos或mongod进程的守护进程模式</span></span><br><span class="line">  fork: <span class="literal">true</span></span><br><span class="line">  <span class="comment">#指定用于保存mongos或mongod进程的进程ID的文件位置，其中mongos或mongod将写入其PID</span></span><br><span class="line">  pidFilePath: <span class="string">"/Users/didi/xzy/sharded_cluster/myshardrs01_27018/log/mongod.pid"</span></span><br><span class="line">net:</span><br><span class="line">  <span class="comment">#服务实例绑定所有IP，有副作用，副本集初始化的时候，节点名字会自动设置为本地域名，而不是ip</span></span><br><span class="line">  <span class="comment">#bindIpAll:true</span></span><br><span class="line">  <span class="comment">#服务实例绑定的IP</span></span><br><span class="line">  bindIp: localhost</span><br><span class="line">  <span class="comment">#bindIp</span></span><br><span class="line">  <span class="comment">#绑定的端口</span></span><br><span class="line">  port: 27018</span><br><span class="line">replication:</span><br><span class="line">  <span class="comment">#副本集的名称</span></span><br><span class="line">  replSetName: myshardrs01</span><br><span class="line">sharding:</span><br><span class="line">	<span class="comment">#分片角色</span></span><br><span class="line">	clusterRole: shardsvr</span><br></pre></td></tr></tbody></table></figure>
+
+<p>sharding.clusterRole:</p>
+<table>
+<thead>
+<tr>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>configsvr</td>
+<td>Start this instance as a config server.The instance starts on port 27019 by default.</td>
+</tr>
+<tr>
+<td>shardsvr</td>
+<td>Start this instance as a shard.The instance starts on port 27018 by default.</td>
+</tr>
+</tbody></table>
+<p>注意：</p>
+<p>设置sharding.clusterRole需要mongod示例运行复制。要将实例部署为副本集成员，请使用replSetName设置并指定副本集的名称。</p>
+<p>第二个服务：</p>
+<p>新建或修改配置文件：</p>
+<figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim /Users/didi/xzy/sharded_cluster/myshardrs01_27118/mongod.conf</span><br></pre></td></tr></tbody></table></figure>
+
+<p>Myshardrs01_27118</p>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">systemLog:</span><br><span class="line">  <span class="comment">#MongoDB发送所有日志输出的目标指定为文件</span></span><br><span class="line">  destination: file</span><br><span class="line">  <span class="comment">#mongod或mongos应向其发送所有诊断日志记录信息的日志文件的路径</span></span><br><span class="line">  path: <span class="string">"/Users/didi/xzy/sharded_cluster/myshardrs01_27118/log/mongod.log"</span></span><br><span class="line">  <span class="comment">#当mongos或mongod实例重新启动时，mongos或mongod会将新条目附加到现有日志文件的末尾。</span></span><br><span class="line">  logAppend: <span class="literal">true</span></span><br><span class="line">storage:</span><br><span class="line">  <span class="comment">#mongod实例存储其数据的目录，storage.dbPath设置仅适用于mongod。</span></span><br><span class="line">  dbPath: <span class="string">"/Users/didi/xzy/sharded_cluster/myshardrs01_27118/data/db"</span></span><br><span class="line">  journal:</span><br><span class="line">    <span class="comment">#启用或禁用持久性日志以确保数据文件保持有效和可恢复。</span></span><br><span class="line">    enabled: <span class="literal">true</span></span><br><span class="line">processManagement:</span><br><span class="line">  <span class="comment">#启用在后台运行mongos或mongod进程的守护进程模式</span></span><br><span class="line">  fork: <span class="literal">true</span></span><br><span class="line">  <span class="comment">#指定用于保存mongos或mongod进程的进程ID的文件位置，其中mongos或mongod将写入其PID</span></span><br><span class="line">  pidFilePath: <span class="string">"/Users/didi/xzy/sharded_cluster/myshardrs01_27118/log/mongod.pid"</span></span><br><span class="line">net:</span><br><span class="line">  <span class="comment">#服务实例绑定所有IP，有副作用，副本集初始化的时候，节点名字会自动设置为本地域名，而不是ip</span></span><br><span class="line">  <span class="comment">#bindIpAll:true</span></span><br><span class="line">  <span class="comment">#服务实例绑定的IP</span></span><br><span class="line">  bindIp: localhost</span><br><span class="line">  <span class="comment">#bindIp</span></span><br><span class="line">  <span class="comment">#绑定的端口</span></span><br><span class="line">  port: 27118</span><br><span class="line">replication:</span><br><span class="line">  <span class="comment">#副本集的名称</span></span><br><span class="line">  replSetName: myshardrs01</span><br><span class="line">sharding:</span><br><span class="line">	<span class="comment">#分片角色</span></span><br><span class="line">	clusterRole: shardsvr</span><br></pre></td></tr></tbody></table></figure>
+
+
+
+<p>第三个服务：</p>
+<p>新建或修改配置文件：</p>
+<figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim /Users/didi/xzy/sharded_cluster/myshardrs01_27218/mongod.conf</span><br></pre></td></tr></tbody></table></figure>
+
+<p>Myshardrs01_27218</p>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">systemLog:</span><br><span class="line">  <span class="comment">#MongoDB发送所有日志输出的目标指定为文件</span></span><br><span class="line">  destination: file</span><br><span class="line">  <span class="comment">#mongod或mongos应向其发送所有诊断日志记录信息的日志文件的路径</span></span><br><span class="line">  path: <span class="string">"/Users/didi/xzy/sharded_cluster/myshardrs01_27218/log/mongod.log"</span></span><br><span class="line">  <span class="comment">#当mongos或mongod实例重新启动时，mongos或mongod会将新条目附加到现有日志文件的末尾。</span></span><br><span class="line">  logAppend: <span class="literal">true</span></span><br><span class="line">storage:</span><br><span class="line">  <span class="comment">#mongod实例存储其数据的目录，storage.dbPath设置仅适用于mongod。</span></span><br><span class="line">  dbPath: <span class="string">"/Users/didi/xzy/sharded_cluster/myshardrs01_27218/data/db"</span></span><br><span class="line">  journal:</span><br><span class="line">    <span class="comment">#启用或禁用持久性日志以确保数据文件保持有效和可恢复。</span></span><br><span class="line">    enabled: <span class="literal">true</span></span><br><span class="line">processManagement:</span><br><span class="line">  <span class="comment">#启用在后台运行mongos或mongod进程的守护进程模式</span></span><br><span class="line">  fork: <span class="literal">true</span></span><br><span class="line">  <span class="comment">#指定用于保存mongos或mongod进程的进程ID的文件位置，其中mongos或mongod将写入其PID</span></span><br><span class="line">  pidFilePath: <span class="string">"/Users/didi/xzy/sharded_cluster/myshardrs01_27218/log/mongod.pid"</span></span><br><span class="line">net:</span><br><span class="line">  <span class="comment">#服务实例绑定所有IP，有副作用，副本集初始化的时候，节点名字会自动设置为本地域名，而不是ip</span></span><br><span class="line">  <span class="comment">#bindIpAll:true</span></span><br><span class="line">  <span class="comment">#服务实例绑定的IP</span></span><br><span class="line">  bindIp: localhost</span><br><span class="line">  <span class="comment">#bindIp</span></span><br><span class="line">  <span class="comment">#绑定的端口</span></span><br><span class="line">  port: 27218</span><br><span class="line">replication:</span><br><span class="line">  <span class="comment">#副本集的名称</span></span><br><span class="line">  replSetName: myshardrs01</span><br><span class="line">sharding:</span><br><span class="line">	<span class="comment">#分片角色</span></span><br><span class="line">	clusterRole: shardsvr</span><br></pre></td></tr></tbody></table></figure>
+
+
+
+<h3 id="第二个副本集"><a href="#第二个副本集" class="headerlink" title="第二个副本集"></a>第二个副本集</h3><p>创建三个服务，将端口和存储路径以及副本集名称改为myshardrs02即可，其他都相同</p>
+<h3 id="配置集"><a href="#配置集" class="headerlink" title="配置集"></a>配置集</h3><p>同样创建三个服务</p>
+<p>新建或修改配置文件：</p>
+<figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim /Users/didi/xzy/sharded_cluster/myconfigrs_27019/mongod.conf</span><br></pre></td></tr></tbody></table></figure>
+
+<p>Myconfigrs_27019:</p>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">systemLog:</span><br><span class="line">  <span class="comment">#MongoDB发送所有日志输出的目标指定为文件</span></span><br><span class="line">  destination: file</span><br><span class="line">  <span class="comment">#mongod或mongos应向其发送所有诊断日志记录信息的日志文件的路径</span></span><br><span class="line">  path: <span class="string">"/Users/didi/xzy/sharded_cluster/myconfigrs_27019/log/mongod.log"</span></span><br><span class="line">  <span class="comment">#当mongos或mongod实例重新启动时，mongos或mongod会将新条目附加到现有日志文件的末尾。</span></span><br><span class="line">  logAppend: <span class="literal">true</span></span><br><span class="line">storage:</span><br><span class="line">  <span class="comment">#mongod实例存储其数据的目录，storage.dbPath设置仅适用于mongod。</span></span><br><span class="line">  dbPath: <span class="string">"/Users/didi/xzy/sharded_cluster/myconfigrs_27019/data/db"</span></span><br><span class="line">  journal:</span><br><span class="line">    <span class="comment">#启用或禁用持久性日志以确保数据文件保持有效和可恢复。</span></span><br><span class="line">    enabled: <span class="literal">true</span></span><br><span class="line">processManagement:</span><br><span class="line">  <span class="comment">#启用在后台运行mongos或mongod进程的守护进程模式</span></span><br><span class="line">  fork: <span class="literal">true</span></span><br><span class="line">  <span class="comment">#指定用于保存mongos或mongod进程的进程ID的文件位置，其中mongos或mongod将写入其PID</span></span><br><span class="line">  pidFilePath: <span class="string">"/Users/didi/xzy/sharded_cluster/myconfigrs_27019/log/mongod.pid"</span></span><br><span class="line">net:</span><br><span class="line">  <span class="comment">#服务实例绑定所有IP，有副作用，副本集初始化的时候，节点名字会自动设置为本地域名，而不是ip</span></span><br><span class="line">  <span class="comment">#bindIpAll:true</span></span><br><span class="line">  <span class="comment">#服务实例绑定的IP</span></span><br><span class="line">  bindIp: localhost</span><br><span class="line">  <span class="comment">#bindIp</span></span><br><span class="line">  <span class="comment">#绑定的端口</span></span><br><span class="line">  port: 27019</span><br><span class="line">replication:</span><br><span class="line">  <span class="comment">#副本集的名称</span></span><br><span class="line">  replSetName: myconfigrs</span><br><span class="line">sharding:</span><br><span class="line">	<span class="comment">#分片角色</span></span><br><span class="line">	clusterRole: configsvr</span><br></pre></td></tr></tbody></table></figure>
+
+
+
+<h3 id="初始化副本集"><a href="#初始化副本集" class="headerlink" title="初始化副本集"></a>初始化副本集</h3><p>与上面连接节点处相同</p>
+<p>但是配置集中不需要添加仲裁节点，将两个节点以从节点的方式加入即可。</p>
+<h3 id="路由集"><a href="#路由集" class="headerlink" title="路由集"></a>路由集</h3><p>是mongos的服务，不是mongod的服务</p>
+<p>第一步：准备存放日志的目录：</p>
+<figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">-------------------mongos01  路由节点不存放数据，所以不需要存放数据的目录</span></span><br><span class="line">mkdir /Users/didi/xzy/sharded_cluster/mymongos_27019/log</span><br></pre></td></tr></tbody></table></figure>
+
+<p>Mymongos_27017:</p>
+<p>新建或修改配置文件：</p>
+<figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim /Users/didi/xzy/sharded_cluster/mymongos_27017/mongos.conf</span><br></pre></td></tr></tbody></table></figure>
+
+<p>mongos.conf</p>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">systemLog:</span><br><span class="line">  <span class="comment">#MongoDB发送所有日志输出的目标指定为文件</span></span><br><span class="line">  destination: file</span><br><span class="line">  <span class="comment">#mongod或mongos应向其发送所有诊断日志记录信息的日志文件的路径</span></span><br><span class="line">  path: <span class="string">"/Users/didi/xzy/sharded_cluster/mymongos_27017/log/mongod.log"</span></span><br><span class="line">  <span class="comment">#当mongos或mongod实例重新启动时，mongos或mongod会将新条目附加到现有日志文件的末尾。</span></span><br><span class="line">  logAppend: <span class="literal">true</span></span><br><span class="line">storage:</span><br><span class="line">  <span class="comment">#mongod实例存储其数据的目录，storage.dbPath设置仅适用于mongod。</span></span><br><span class="line">  dbPath: <span class="string">"/Users/didi/xzy/sharded_cluster/mymongos_27017/data/db"</span></span><br><span class="line">  journal:</span><br><span class="line">    <span class="comment">#启用或禁用持久性日志以确保数据文件保持有效和可恢复。</span></span><br><span class="line">    enabled: <span class="literal">true</span></span><br><span class="line">processManagement:</span><br><span class="line">  <span class="comment">#启用在后台运行mongos或mongod进程的守护进程模式</span></span><br><span class="line">  fork: <span class="literal">true</span></span><br><span class="line">  <span class="comment">#指定用于保存mongos或mongod进程的进程ID的文件位置，其中mongos或mongod将写入其PID</span></span><br><span class="line">  pidFilePath: <span class="string">"/Users/didi/xzy/sharded_cluster/mymongos_27017/log/mongod.pid"</span></span><br><span class="line">net:</span><br><span class="line">  <span class="comment">#服务实例绑定所有IP，有副作用，副本集初始化的时候，节点名字会自动设置为本地域名，而不是ip</span></span><br><span class="line">  <span class="comment">#bindIpAll:true</span></span><br><span class="line">  <span class="comment">#服务实例绑定的IP</span></span><br><span class="line">  bindIp: localhost</span><br><span class="line">  <span class="comment">#bindIp</span></span><br><span class="line">  <span class="comment">#绑定的端口</span></span><br><span class="line">  port: 27017</span><br><span class="line">sharding:</span><br><span class="line">	<span class="comment">#指定配置节点副本集</span></span><br><span class="line">	configDB: myconfigrs/localhost:27019,localhost:27119,localhost:27219</span><br></pre></td></tr></tbody></table></figure>
+
+<p>启动mongos:</p>
+<figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mongoa -f /Users/didi/xzy/sharded_cluster/mymongos_27017/mongos.conf</span><br></pre></td></tr></tbody></table></figure>
+
+<p>此时路由还不能找到分片，所要要添加分片到路由中。</p>
+<p>使用命令添加分片：</p>
+<h3 id="1-添加分片："><a href="#1-添加分片：" class="headerlink" title="(1)添加分片："></a>(1)添加分片：</h3><p>语法：</p>
+<figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sh.addShard("IP:Port")</span><br></pre></td></tr></tbody></table></figure>
+
+<p>将第一套副本集添加进来：</p>
+<figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">mongos&gt;</span><span class="bash"></span></span><br><span class="line"><span class="bash">sh.addShard(<span class="string">"myshardrs01/localhost:27018,localhost:27118,localhost:27218"</span>)</span></span><br><span class="line"><span class="meta">#</span><span class="bash">---------------查看分片状况情况</span></span><br><span class="line">sh.status()</span><br></pre></td></tr></tbody></table></figure>
+
+<p>将第二套副本集添加进来：</p>
+<figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">mongos&gt;</span><span class="bash"></span></span><br><span class="line"><span class="bash">sh.addShard(<span class="string">"myshardrs01/localhost:27318,localhost:27418,localhost:27518"</span>)</span></span><br><span class="line"><span class="meta">#</span><span class="bash">---------------查看分片状况情况</span></span><br><span class="line">sh.status()</span><br></pre></td></tr></tbody></table></figure>
+
+
+
+<h3 id="2-开启分片功能"><a href="#2-开启分片功能" class="headerlink" title="(2)开启分片功能"></a>(2)开启分片功能</h3><p>sh.enableSharding(“库名”)、sh.shardCollection(“库名.集合名”,{“key”:1})</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sh.enableSharding("")</span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="3-集合分片"><a href="#3-集合分片" class="headerlink" title="(3)集合分片"></a>(3)集合分片</h3><p>对集合分片，必须使用sh.shardCollection()方法指定集合和分片键</p>
+<p>语法：</p>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sh.shardCollection(namespace,key,unique)</span><br></pre></td></tr></tbody></table></figure>
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>namespace</td>
+<td>string</td>
+<td>要（分片）共享对目标集合对命名空间，格式：<databse>.<collection></collection></databse></td>
+</tr>
+<tr>
+<td>key</td>
+<td>document</td>
+<td>用作分片键对所以规则文档。shard键决定MongoDB如何在shard之间分法文档。除非集合为空，否则索引必须在shard collection命令之前存在。如果集合为空，则MongoDB在对集合进行分片之前创建索引，前提是支持分片键的索引不存在。简单来说：由包含字段和该字段的索引遍历方向的文档组成。</td>
+</tr>
+<tr>
+<td>unique</td>
+<td>boolean</td>
+<td>当值为true，片键字段上会限制为确保是唯一索引，哈希策略片键不支持唯一索引，默认为false</td>
+</tr>
+</tbody></table>
+<p>例如在articled库中的comment集合中，以nickname为键，以哈希策略来分片。</p>
+<figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">-------------------------首先开启article库的分片功能</span></span><br><span class="line">sh.enableSharding("articledb")</span><br><span class="line"></span><br><span class="line">sh.shardCollection("articledb.comment",{"nickname":"hashed"})</span><br></pre></td></tr></tbody></table></figure>
+
+
+
+<p>增加第二个路由节点：</p>
+<p>和创建第一个节点的方式相同，开启服务后不需要再添加分配，会由配置服务自动同步。</p>
+<h1 id="安全认证"><a href="#安全认证" class="headerlink" title="安全认证"></a>安全认证</h1><p>常用的内置角色：</p>
+<ul>
+<li>数据库用户角色：read、readWrite</li>
+<li>所有数据库用户角色：readAnyDatabase、readWriteAnyDatabase、userAdminAnyDatabase、dbAdminAnyDatabase</li>
+<li>数据库管理角色：dbAdmin、dbOwner、userAdmin</li>
+<li>集群管理角色：clusterAdmin、clusterManager、clusterMonitor、hostManager</li>
+<li>备份恢复角色：backup、restore</li>
+<li>超级用户角色：root</li>
+<li>内部角色：system</li>
+</ul>
+<p>角色说明：</p>
+<table>
+<thead>
+<tr>
+<th>角色</th>
+<th>权限描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>read</td>
+<td>可以读取数据库中任何数据。</td>
+</tr>
+<tr>
+<td>readWrite</td>
+<td>可以读写所有数据库中任何数据，包括创建、重命名、删除集合</td>
+</tr>
+<tr>
+<td>readAnyDatabase</td>
+<td>可以读取所有数据库中任何数据（除了数据库config和local之外）</td>
+</tr>
+<tr>
+<td>readWriteAnyDatabase</td>
+<td>可以读写所有数据库中任何数据（除了数据库config和local之外）</td>
+</tr>
+<tr>
+<td>userAdminAnyDatabase</td>
+<td>可以在指定数据库创建和修改用户（除了数据库config和local之外）</td>
+</tr>
+<tr>
+<td>dbAdminAnyDatabase</td>
+<td>可以读取任何数据库以及数据库进行清理、修改、压缩、获取统计信息、执行检查等操作（除了数据库config和local之外）。</td>
+</tr>
+<tr>
+<td>dbAdmin</td>
+<td>可以读取指定数据库以及对数据库进行清理、修改、压缩、获取统计信息、执行检查等操作。</td>
+</tr>
+<tr>
+<td>userAdmin</td>
+<td>可以指定数据库创建和修改用户</td>
+</tr>
+<tr>
+<td>clusterAdmin</td>
+<td>可以对整个集群或数据库系统进行管理操作</td>
+</tr>
+<tr>
+<td>backup</td>
+<td>备份MongoDB数据最小的权限</td>
+</tr>
+<tr>
+<td>restore</td>
+<td>从备份文件中还原恢复MongoDB数据（处理system.profile集合）的权限</td>
+</tr>
+<tr>
+<td>root</td>
+<td>超级账号，超级权限</td>
+</tr>
+</tbody></table>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">今年勇</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://www.jnylife.com/2021/12/27/mongodb%E7%AC%94%E8%AE%B0/">https://www.jnylife.com/2021/12/27/mongodb笔记/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://www.jnylife.com" target="_blank">JnyLife</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Mongodb/">Mongodb</a></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/gh/jnylife/ImgHosting/img/202112271405483.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer=""></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2021/12/30/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%90%AD%E5%BB%BA%E9%9D%92%E9%BE%99%E9%9D%A2%E6%9D%BF%E6%8B%BF%E4%BA%AC%E8%B1%86/"><img class="prev-cover" src="https://cdn.jsdelivr.net/gh/jnylife/ImgHosting/img/202112301429419.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">云服务器搭建青龙面板每日自动拿京豆</div></div></a></div><div class="next-post pull-right"><a href="/2021/12/23/Vue%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E2%91%A2/"><img class="next-cover" src="https://cdn.jsdelivr.net/gh/jnylife/ImgHosting/img/202112131527508.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Vue学习笔记③</div></div></a></div></nav><hr><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://cdn.jsdelivr.net/gh/jnylife/ImgHosting/img/202112241523748.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"></div><div class="author-info__name">今年勇</div><div class="author-info__description">韬光晦迹，潜龙勿用。</div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">26</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">46</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">10</div></a></div></div><div class="card-info-social-icons is-center"><a class="social-icon" href="tencent://AddContact/?fromId=45&amp;fromSubId=1&amp;subcmd=all&amp;uin=861722386&amp;website=www.oicqzone.com" target="_blank" title=""><i class="fab fa-qq"></i></a><a class="social-icon" href="mailto:861722386@qq.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a><a class="social-icon" href="https://github.com/jnylife" target="_blank" title=""><i class="fab fa-github"></i></a><a class="social-icon" href="https://cdn.jsdelivr.net/gh/jnylife/ImgHosting@latest/img/f3a13fcde87fc2ce2aefdb6db9d5e73.png" target="_blank" title=""><i class="fab fa-weixin"></i></a><a class="social-icon" href="https://ymktchic.vercel.app/" target="_blank" title=""><i class="fab fa-edge"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>简介</span></div><div class="announcement_content">博主22届本科毕业，前端攻城狮，在这里分享知识与日常总结。<br>我的技术栈：<br><img class="entered loading" src="https://img.shields.io/badge/-React-282c34?logo=react" data-ll-status="loading">&nbsp;<img src="https://img.shields.io/badge/-TypeScript-blue?logo=typescript&amp;logoColor=white" data-ll-status="loading" class="entered loading">&nbsp;<img src="https://img.shields.io/badge/-JavaScript-yellow?logo=javascript&amp;logoColor=white" data-ll-status="loading" class="entered loading"><div class="xpand" style="height:200px;"><canvas class="illo" width="800" height="800" style="max-width: 200px; max-height: 200px; touch-action: none; width: 640px; height: 640px;"></canvas></div></div><script src="https://cdn.jsdelivr.net/gh/xiaopengand/blogCdn@latest/xzxr/twopeople1.js"></script><script src="https://cdn.jsdelivr.net/gh/xiaopengand/blogCdn@latest/xzxr/zdog.dist.js"></script><script id="rendered-js" src="https://cdn.jsdelivr.net/gh/xiaopengand/blogCdn@latest/xzxr/twopeople.js"></script><style>.card-widget.card-announcement {
+margin: 0;
+align-items: center;
+justify-content: center;
+text-align: center;
+}
+canvas {
+display: block;
+margin: 0 auto;
+cursor: move;
+}</style></div><div class="card-widget" id="card-poem"><div id="poem_sentence"></div><div id="poem_info"><div id="poem_dynasty"></div><div id="poem_author"></div></div></div><script src="https://cdn.jsdelivr.net/gh/zhheo/JS-Heo@main/poem/jinrishici.js" charset="utf-8"></script><script type="text/javascript">jinrishici.load(function(result) {
+var sentence = document.querySelector("#poem_sentence")
+var author = document.querySelector("#poem_author")
+var dynasty = document.querySelector("#poem_dynasty")
+
+var sentenceText = result.data.content
+sentenceText = sentenceText.substr(0, sentenceText.length - 1);
+sentence.innerHTML = sentenceText
+dynasty.innerHTML = result.data.origin.dynasty
+author.innerHTML = result.data.origin.author + '《' + result.data.origin.title + '》'
+});</script><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#MongoDB%E7%9B%B8%E5%85%B3%E6%A6%82%E5%BF%B5"><span class="toc-number">1.</span> <span class="toc-text">MongoDB相关概念</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%9A%E5%8A%A1%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="toc-number">1.1.</span> <span class="toc-text">业务应用场景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MongoDB%E7%AE%80%E4%BB%8B"><span class="toc-number">1.2.</span> <span class="toc-text">MongoDB简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E6%93%8D%E4%BD%9C"><span class="toc-number">1.3.</span> <span class="toc-text">数据库操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%89%E6%8B%A9%E5%92%8C%E5%88%9B%E5%BB%BA%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-number">1.3.1.</span> <span class="toc-text">选择和创建数据库</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AE%80%E4%BB%8B"><span class="toc-number">1.4.</span> <span class="toc-text">简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C"><span class="toc-number">1.5.</span> <span class="toc-text">基本操作</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%90%AF%E5%8A%A8%E6%9C%8D%E5%8A%A1"><span class="toc-number">1.5.0.1.</span> <span class="toc-text">启动服务</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E6%9C%8D%E5%8A%A1%E4%BF%A1%E6%81%AF"><span class="toc-number">1.5.0.2.</span> <span class="toc-text">查看服务信息</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-number">1.5.0.3.</span> <span class="toc-text">查看数据库</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%80%89%E6%8B%A9%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-number">1.5.0.4.</span> <span class="toc-text">选择数据库</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-number">1.5.0.5.</span> <span class="toc-text">删除数据库</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E9%9B%86%E5%90%88"><span class="toc-number">1.5.0.6.</span> <span class="toc-text">查看集合</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E9%9B%86%E5%90%88"><span class="toc-number">1.5.0.7.</span> <span class="toc-text">创建集合</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E9%9B%86%E5%90%88"><span class="toc-number">1.5.0.8.</span> <span class="toc-text">删除集合</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ID%E7%9A%84%E7%BB%84%E6%88%90%EF%BC%9A"><span class="toc-number">1.5.0.9.</span> <span class="toc-text">ID的组成：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A2%9E%E5%88%A0%E6%94%B9%E6%9F%A5"><span class="toc-number">1.6.</span> <span class="toc-text">增删改查</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#C%E5%A2%9E"><span class="toc-number">1.6.1.</span> <span class="toc-text">C增</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#R%E6%9F%A5"><span class="toc-number">1.6.2.</span> <span class="toc-text">R查</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#U%E6%94%B9"><span class="toc-number">1.6.3.</span> <span class="toc-text">U改</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#D%E5%88%A0"><span class="toc-number">1.6.4.</span> <span class="toc-text">D删</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#try-catch"><span class="toc-number">1.7.</span> <span class="toc-text">try catch</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8E%92%E5%BA%8F-amp-%E5%88%86%E9%A1%B5"><span class="toc-number">1.8.</span> <span class="toc-text">排序&amp;分页</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8E%92%E5%BA%8F"><span class="toc-number">1.8.0.1.</span> <span class="toc-text">排序</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%86%E9%A1%B5"><span class="toc-number">1.8.0.2.</span> <span class="toc-text">分页</span></a></li></ol></li></ol><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%81%9A%E5%90%88%E6%9F%A5%E8%AF%A2"><span class="toc-number">1.9.</span> <span class="toc-text">聚合查询</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BC%98%E5%8C%96%E7%B4%A2%E5%BC%95"><span class="toc-number">1.10.</span> <span class="toc-text">优化索引</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C-1"><span class="toc-number">1.10.0.1.</span> <span class="toc-text">基本操作</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%86%E6%9E%90%E7%B4%A2%E5%BC%95"><span class="toc-number">1.10.0.2.</span> <span class="toc-text">分析索引</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9D%83%E9%99%90%E6%9C%BA%E5%88%B6"><span class="toc-number">1.11.</span> <span class="toc-text">权限机制</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%87%E4%BB%BD%E8%BF%98%E5%8E%9F"><span class="toc-number">1.12.</span> <span class="toc-text">备份还原</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Mongoose"><span class="toc-number">1.13.</span> <span class="toc-text">Mongoose</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Java%E4%BD%BF%E7%94%A8"><span class="toc-number">1.14.</span> <span class="toc-text">Java使用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B7%BB%E5%8A%A0%E4%BE%9D%E8%B5%96"><span class="toc-number">1.14.1.</span> <span class="toc-text">添加依赖</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E5%B1%9E%E6%80%A7%E6%96%87%E4%BB%B6%EF%BC%88appliction-yml%EF%BC%89"><span class="toc-number">1.14.2.</span> <span class="toc-text">配置属性文件（appliction.yml）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B7%BB%E5%8A%A0%E6%95%B0%E6%8D%AE"><span class="toc-number">1.14.3.</span> <span class="toc-text">添加数据</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E5%88%86%E9%A1%B5"><span class="toc-number">1.14.4.</span> <span class="toc-text">创建分页</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0%E7%82%B9%E8%B5%9E"><span class="toc-number">1.14.5.</span> <span class="toc-text">实现点赞</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#MongoDB%E9%9B%86%E7%BE%A4%E5%92%8C%E5%AE%89%E5%85%A8"><span class="toc-number">2.</span> <span class="toc-text">MongoDB集群和安全</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%AF%E6%9C%AC%E9%9B%86"><span class="toc-number">2.1.</span> <span class="toc-text">副本集</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%90%AD%E5%BB%BA%E5%89%AF%E6%9C%AC%E9%9B%86"><span class="toc-number">2.2.</span> <span class="toc-text">搭建副本集</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BB%E8%8A%82%E7%82%B9"><span class="toc-number">2.2.1.</span> <span class="toc-text">主节点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%8E%E8%8A%82%E7%82%B9"><span class="toc-number">2.2.2.</span> <span class="toc-text">从节点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%B2%E8%A3%81%E8%8A%82%E7%82%B9"><span class="toc-number">2.2.3.</span> <span class="toc-text">仲裁节点</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%9E%E6%8E%A5%E8%8A%82%E7%82%B9"><span class="toc-number">2.3.</span> <span class="toc-text">连接节点</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B7%BB%E5%8A%A0%E5%89%AF%E6%9C%AC%E4%BB%8E%E8%8A%82%E7%82%B9"><span class="toc-number">2.3.1.</span> <span class="toc-text">添加副本从节点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B7%BB%E5%8A%A0%E4%BB%B2%E8%A3%81%E8%80%85%E8%8A%82%E7%82%B9"><span class="toc-number">2.3.2.</span> <span class="toc-text">添加仲裁者节点</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%AF%E6%9C%AC%E9%9B%86%E8%AF%BB%E5%86%99%E6%93%8D%E4%BD%9C"><span class="toc-number">2.4.</span> <span class="toc-text">副本集读写操作</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BB%E8%8A%82%E7%82%B9%E7%9A%84%E9%80%89%E4%B8%BE%E5%8E%9F%E5%88%99"><span class="toc-number">2.5.</span> <span class="toc-text">主节点的选举原则</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SpringDataMongoDB%E8%BF%9E%E6%8E%A5%E5%89%AF%E6%9C%AC%E9%9B%86"><span class="toc-number">2.6.</span> <span class="toc-text">SpringDataMongoDB连接副本集</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E7%89%87%E9%9B%86%E7%BE%A4"><span class="toc-number">2.7.</span> <span class="toc-text">分片集群</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%86%E7%89%87%E5%8C%85%E5%90%AB%E7%9A%84%E7%BB%84%E4%BB%B6"><span class="toc-number">2.7.1.</span> <span class="toc-text">分片包含的组件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E5%A5%97%E5%89%AF%E6%9C%AC%E9%9B%86"><span class="toc-number">2.7.2.</span> <span class="toc-text">第一套副本集</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E4%B8%AA%E5%89%AF%E6%9C%AC%E9%9B%86"><span class="toc-number">2.7.3.</span> <span class="toc-text">第二个副本集</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E9%9B%86"><span class="toc-number">2.7.4.</span> <span class="toc-text">配置集</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9D%E5%A7%8B%E5%8C%96%E5%89%AF%E6%9C%AC%E9%9B%86"><span class="toc-number">2.7.5.</span> <span class="toc-text">初始化副本集</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B7%AF%E7%94%B1%E9%9B%86"><span class="toc-number">2.7.6.</span> <span class="toc-text">路由集</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E6%B7%BB%E5%8A%A0%E5%88%86%E7%89%87%EF%BC%9A"><span class="toc-number">2.7.7.</span> <span class="toc-text">(1)添加分片：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%BC%80%E5%90%AF%E5%88%86%E7%89%87%E5%8A%9F%E8%83%BD"><span class="toc-number">2.7.8.</span> <span class="toc-text">(2)开启分片功能</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E9%9B%86%E5%90%88%E5%88%86%E7%89%87"><span class="toc-number">2.7.9.</span> <span class="toc-text">(3)集合分片</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AE%89%E5%85%A8%E8%AE%A4%E8%AF%81"><span class="toc-number">3.</span> <span class="toc-text">安全认证</span></a></li></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2022/03/23/%E5%88%A9%E7%94%A8%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%90%AD%E5%BB%BAbutterfly%E4%B8%BB%E9%A2%98%E5%8D%9A%E5%AE%A2/" title="利用云服务器搭建butterfly主题博客"><img src="https://cdn.jsdelivr.net/gh/jnylife/ImgHosting/img/202111211000900.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="利用云服务器搭建butterfly主题博客"></a><div class="content"><a class="title" href="/2022/03/23/%E5%88%A9%E7%94%A8%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%90%AD%E5%BB%BAbutterfly%E4%B8%BB%E9%A2%98%E5%8D%9A%E5%AE%A2/" title="利用云服务器搭建butterfly主题博客">利用云服务器搭建butterfly主题博客</a><time datetime="2022-03-23T02:39:38.000Z" title="发表于 2022-03-23 10:39:38">2022-03-23</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/03/09/%E5%93%87%EF%BC%81%E7%AB%9F%E7%84%B6%E4%BC%9A%E6%9C%89%E8%BF%99%E4%B9%88%E5%A5%BD%E7%9C%8B%E7%9A%84%E6%8C%89%E9%92%AE/" title="哇！怎么会有这么好看的按钮！"><img src="http://cdn.ymktchic.top/img/202203092028926.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="哇！怎么会有这么好看的按钮！"></a><div class="content"><a class="title" href="/2022/03/09/%E5%93%87%EF%BC%81%E7%AB%9F%E7%84%B6%E4%BC%9A%E6%9C%89%E8%BF%99%E4%B9%88%E5%A5%BD%E7%9C%8B%E7%9A%84%E6%8C%89%E9%92%AE/" title="哇！怎么会有这么好看的按钮！">哇！怎么会有这么好看的按钮！</a><time datetime="2022-03-09T12:26:19.000Z" title="发表于 2022-03-09 20:26:19">2022-03-09</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/01/21/butterfly%E4%B8%BB%E9%A2%98%E5%AE%9E%E7%8E%B0%E7%99%BD%E5%A4%A9%E5%A4%9C%E6%99%9A%E5%88%87%E6%8D%A2%E5%8A%A8%E7%94%BB/" title="butterfly主题实现白天夜晚切换动画"><img src="http://cdn.ymktchic.top/img/202201211544798.gif" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="butterfly主题实现白天夜晚切换动画"></a><div class="content"><a class="title" href="/2022/01/21/butterfly%E4%B8%BB%E9%A2%98%E5%AE%9E%E7%8E%B0%E7%99%BD%E5%A4%A9%E5%A4%9C%E6%99%9A%E5%88%87%E6%8D%A2%E5%8A%A8%E7%94%BB/" title="butterfly主题实现白天夜晚切换动画">butterfly主题实现白天夜晚切换动画</a><time datetime="2022-01-21T07:33:10.000Z" title="发表于 2022-01-21 15:33:10">2022-01-21</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/01/02/Vue%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E2%91%A3/" title="Vue学习笔记④"><img src="https://cdn.jsdelivr.net/gh/jnylife/ImgHosting/img/202112131527508.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Vue学习笔记④"></a><div class="content"><a class="title" href="/2022/01/02/Vue%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E2%91%A3/" title="Vue学习笔记④">Vue学习笔记④</a><time datetime="2022-01-02T09:19:33.000Z" title="发表于 2022-01-02 17:19:33">2022-01-02</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/12/30/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%90%AD%E5%BB%BA%E9%9D%92%E9%BE%99%E9%9D%A2%E6%9D%BF%E6%8B%BF%E4%BA%AC%E8%B1%86/" title="云服务器搭建青龙面板每日自动拿京豆"><img src="https://cdn.jsdelivr.net/gh/jnylife/ImgHosting/img/202112301429419.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="云服务器搭建青龙面板每日自动拿京豆"></a><div class="content"><a class="title" href="/2021/12/30/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%90%AD%E5%BB%BA%E9%9D%92%E9%BE%99%E9%9D%A2%E6%9D%BF%E6%8B%BF%E4%BA%AC%E8%B1%86/" title="云服务器搭建青龙面板每日自动拿京豆">云服务器搭建青龙面板每日自动拿京豆</a><time datetime="2021-12-30T06:13:53.000Z" title="发表于 2021-12-30 14:13:53">2021-12-30</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">©2021 - 2022  <i id="heartbeat" class="fa fas fa-heart"></i> 今年勇</div><div class="footer_custom_text"><span style="margin-top:5px;display:inline-block;font-size:14px;">韬光晦迹，潜龙勿用。</span> <p></p> <p><a target="_blank" href="https://hexo.io/"><img src="https://img.shields.io/badge/Frame-Hexo-blue?style=flat&amp;logo=hexo" title="博客框架为Hexo" data-ll-status="loading" class="entered loading"></a>&nbsp;<a target="_blank" href="https://demo.jerryc.me/"><img src="https://img.shields.io/badge/Theme-Butterfly-6513df?style=flat&amp;logo=bitdefender" title="主题采用butterfly" data-ll-status="loading" class="entered loading"></a>&nbsp;<a target="_blank" href="https://metroui.org.ua/index.html "><img src="https://img.shields.io/badge/CDN-jsDelivr-orange?style=flat&amp;logo=jsDelivr" title="本站使用JsDelivr为静态资源提供CDN加速" data-ll-status="loading" class="entered loading"></a> &nbsp;<a target="_blank" href="https://vercel.com/ "><img src="https://img.shields.io/badge/Hosted-Vervel-brightgreen?style=flat&amp;logo=Vercel" title="本站采用双线部署，默认线路托管于Vercel" data-ll-status="loading" class="entered loading"></a>&nbsp;<a class="github-badge" target="_blank" href="https://beian.miit.gov.cn" style="margin-inline:5px" title="本站已在工信部备案，备案号浙ICP备-2022001668号"><img src="http://cdn.ymktchic.top/img/202201212329189.svg" data-lazy-src="" alt="" data-ll-status="loaded" class="entered loaded"></a>&nbsp;<a target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img src="https://img.shields.io/badge/Copyright-BY--NC--SA%204.0-d42328?style=flat&amp;logo=Claris" title="本站采用知识共享署名-非商业性使用-相同方式共享4.0国际许可协议进行许可" data-ll-status="loading" class="entered loading"></a> <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="95" height="20" role="img" aria-label="CDN:又拍云"><title>CDN:又拍云</title><linearGradient id="s" x2="0" y2="100%"><stop offset="0" stop-color="#bbb" stop-opacity=".1"></stop><stop offset="1" stop-opacity=".1"></stop></linearGradient><clipPath id="r"><rect width="95" height="20" rx="3" fill="#fff"></rect></clipPath><g clip-path="url(#r)"><rect width="52" height="20" fill="#555"></rect><rect x="52" width="43" height="20" fill="#00b6ff"></rect><rect width="95" height="20" fill="url(#s)"></rect></g><g fill="#fff" text-anchor="middle" font-family="Verdana,Geneva,DejaVu Sans,sans-serif" text-rendering="geometricPrecision" font-size="110"><image x="5" y="3" width="14" height="14" xlink:href="https://developer.qiniu.com/assets/logo-white-b90d685a6b146884636382426d11b7236f5f7ca1c5dfafdb6fa777a0f976fc1f.png"></image><text aria-hidden="true" x="355" y="150" fill="#010101" fill-opacity=".3" transform="scale(.1)" textLength="250">CDN</text><text x="355" y="140" transform="scale(.1)" fill="#fff" textLength="250">CDN</text><text aria-hidden="true" x="725" y="150" fill="#010101" fill-opacity=".3" transform="scale(.1)" textLength="330">七牛云</text><text x="725" y="140" transform="scale(.1)" fill="#fff" textLength="330">七牛云</text></g></svg></p></div></div><div class="container" id="jsi-flying-fish-container"></div><style>@media only screen and (max-width: 767px){
+  #sidebar_search_box input[type=text]{width:calc(100% - 24px)}
+}</style></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="chat_btn" type="button" title="rightside.chat_btn"><i class="fas fa-sms"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"></div></div></div><hr><div id="local-search-results"></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>function loadValine () {
+  function initValine () {
+    const valine = new Valine(Object.assign({
+      el: '#vcomment',
+      appId: 'UsAOahHRL00zbr9XoYvG75xG-gzGzoHsz',
+      appKey: 'eOMmXKfD4QaFClojMKTFtKeg',
+      placeholder: '留下你的足迹吧（个人信息可填可不填哦）',
+      avatar: 'monsterid',
+      meta: 'nick'.split(','),
+      pageSize: '10',
+      lang: 'zh-CN',
+      recordIP: false,
+      serverURLs: '',
+      emojiCDN: '',
+      emojiMaps: "",
+      enableQQ: true,
+      path: window.location.pathname,
+      master: '6638760c412476eca16f3bf2998aa169',   //博主邮箱md5
+      tagMeta: ["小帅哥","好朋友","访客"],     //标识字段名
+      friends:  ["43e87c41aff98c9d86ac6c621aa9498e","c41ce1442cc602586d8bd9d71fbc55ab"],  //小伙伴邮箱Md5
+      metaPlaceholder: {"nick":"QQ号"},
+      requiredFields: ["nick"],
+      visitor: false
+    }, null))
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else getScript('https://cdn.jsdelivr.net/gh/tzy13755126023/BLOG_SOURCE/valine_f/valine.min.js').then(initValine)
+}
+
+if ('Valine' === 'Valine' || !true) {
+  if (true) btf.loadComment(document.getElementById('vcomment'),loadValine)
+  else setTimeout(loadValine, 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script></div><canvas id="universe"></canvas><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script defer="" src="/js/universe.js"></script><script>var a = document.getElementsByTagName("button");console.log(a[10])</script><script data-pjax="" src="https://cdn.jsdelivr.net/gh/Jnylife/CDN@1.3/js/fish.js"></script><script async="" data-pjax="" src="/js/randombg.js"></script><script src="/js/bber.js"><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/click-heart.min.js" async="async" mobile="true"></script><script src="//code.tidio.co/x12qsfd511anbxdjefhc0xk4jkornh0j.js" async="async"></script><script>function onTidioChatApiReady() {
+  window.tidioChatApi.hide();
+  window.tidioChatApi.on("close", function() {
+    window.tidioChatApi.hide();
+  });
+}
+if (window.tidioChatApi) {
+  window.tidioChatApi.on("ready", onTidioChatApiReady);
+} else {
+  document.addEventListener("tidioChat-ready", onTidioChatApiReady);
+}
+
+var chatBtnFn = () => {
+  document.getElementById("chat_btn").addEventListener("click", function(){
+    window.tidioChatApi.show();
+    window.tidioChatApi.open();
+  });
+}
+chatBtnFn()
+</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/gh/metowolf/MetingJS@1.2/dist/Meting.min.js"></script><script async="" data-pjax="" src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

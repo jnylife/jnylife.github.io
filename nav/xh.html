@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<style type="text/css">
+	   *{
+		   margin:0;
+		   paddding:0;
+	   }
+		.box1{width: 1200px;height: 200px;background: white;position: relative;margin-bottom: 100px;border-bottom: 1px solid lightgray;}
+		#container{width: 1200px;height: 2400px;background: #fbfdff;}
+		 .box1 p{font-size: 50px;position: absolute;left: 50px;bottom: 0;padding-bottom: 40px;margin-left: 20px;}
+		 .box1 img{display: block;position: absolute;left: 0;bottom: 0;width: 60px;height: 60px;padding-bottom: 40px;}
+		 .box2{width: 1100px;height: 180px;background: white;margin: auto;border-radius: 20px;margin-bottom: 65px;box-shadow: 0px 0px 20px 0 rgba(0, 0, 0, 0.1);}
+		  .box3{width: 1100px;height: 900px;background: white;margin: auto;border-radius: 20px;position: relative;;box-shadow: 0px 0px 50px 0 rgba(0, 0, 0, 0.1)}
+		 .box3 h2{font-size: 50px;text-align: center;line-height: 200px;}
+		 .box3 img{display: block;width:384px;height: 518px;margin: auto 700px auto 400px ;}
+		.box5{width: 1100px;height: 300px;background: #93f584;margin: auto;position: relative;margin-top: 60px;animation: load 5s infinite linear;}
+		.box6{width: 881px;height: 120px;background: #2ab9fc;margin: auto;position: relative;margin-top: 60px;border-radius: 80px;}
+		 .box6 p{height: 120px;line-height: 120px;text-align: center;color: white;font-size: 40px;}
+		 
+		 @keyframes load{
+		 	0%{background-color: #93f584;}
+		 	50%{background-color: limegreen;}
+			100%{background-color: lawngreen;}
+		 }
+		 
+		 #Main
+		 			{
+		 				margin-top: 40px;
+		 				margin-left: 50px;
+		 				height: 200px;
+		 				font-size: 60px;
+						text-align: center;
+						line-height: 180px;
+						font-family: SimHei;
+						font-weight: bold;
+		 			}
+	</style>
+	<body>
+		<div id="container">
+			<div class="box1">
+				<img src="./O%7DTKQ%7DS)(LY2%7BNIK_N2%60%5D$E.png" alt="">
+				<p>身份码</p>
+			</div>
+			<div class="box2">
+				<div id="Main"></div>
+			</div>
+			<div class="box3">
+				<h2>学生信息</h2>
+				<img src="./xh.png" >
+				
+				
+			</div>
+			<div class="box5">
+				
+			</div>
+			<div class="box6">
+				<p>返校签到</p>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript">
+				window.onload=function()
+				{
+					window.requestAnimationFrame(getDate)
+				}
+				
+				function getDate()
+				{
+					window.setTimeout(function(){
+						window.requestAnimationFrame(getDate)
+					},1000/2)
+					var d=new Date();   
+					var year=d.getFullYear()  //获取年
+					var month=d.getMonth()+1;  //获取月，从 Date 对象返回月份 (0 ~ 11)，故在此处+1
+					var day=d.getDay()    //获取日
+					var days=d.getDate() //获取日期
+					var hour=d.getHours()   //获取小时
+					var minute=d.getMinutes()  //获取分钟
+					var second=d.getSeconds()   //获取秒
+					
+					if(month<10) month="0"+month
+					if(days<10) days="0"+days
+					if(hour<10) hour="0"+hour
+					if(minute<10) minute="0"+minute
+					if(second<10) second="0"+second
+					
+					var week=new Array("星期日","星期一","星期二","星期三","星期四","星期五","星期六")
+					var Tools=document.getElementById("Main")
+					var da=year+"-"+month+"-"+days+" "+hour+":"+minute+":"+second
+					Tools.innerHTML=da
+				}
+				window.addEventListener("touchmove",function(event) {
+        if(event.scale !== 1) {
+            event.preventDefault();
+        }
+    }, 
+    {
+        passive: false
+    }
+);
+			</script>
+
+</html>

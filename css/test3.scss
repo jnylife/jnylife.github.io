@@ -1,0 +1,15 @@
+
+
+@for $i from 1 through 100 {
+    #page .tag-cloud-list a:nth-of-type(#{$i}) {
+   
+      background: rgba(random(255), random(255), random(255), 0.8) !important;
+    }
+  }
+  @for $i from 1 through 100 {
+    #page .tag-cloud-list a:nth-of-type(#{$i}):hover {
+        color: #34495e!important;
+      background: rgba(random(255), random(255), random(255), 0.8) !important;
+    }
+  }
+  
